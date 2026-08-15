@@ -175,18 +175,6 @@ section {
   background-color: rgba(26, 31, 43, 0.9);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--color-border);
-  overflow: visible;
-}
-
-.site-header__decor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: clamp(80px, 10vw, 140px);
-  height: auto;
-  z-index: 101;
-  pointer-events: none;
-  user-select: none;
 }
 
 .site-header__inner {
@@ -614,25 +602,12 @@ section {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  position: relative;
   background-color: var(--color-indigo);
   color: var(--color-neutral);
   text-align: center;
   padding-block: var(--space-lg);
-  overflow: visible;
 }
 
-.site-footer__decor {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: clamp(80px, 10vw, 140px);
-  height: auto;
-  transform: rotate(180deg);
-  z-index: 1;
-  pointer-events: none;
-  user-select: none;
-}
 
 .site-footer__monogram {
   font-family: var(--font-heading);
