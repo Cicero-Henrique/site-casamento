@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentes | Júlia &amp; Cícero</title>
+  <meta name="description" content="Lista de presentes do casamento de Júlia e Cícero. Escolha um presente e contribua através do QR Code." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Presentes | Júlia & Cícero" />
+  <meta property="og:description" content="Lista de presentes do casamento de Júlia e Cícero." />
+  <meta property="og:image" content="assets/images/couple/og-cover.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Cinzel:wght@500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__monogram">J &amp; C</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="nav-toggle__bar"></span>
+        <span class="visually-hidden">Abrir menu</span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="index.html">Início</a></li>
+          <li><a class="site-nav__link" href="presentes.html" aria-current="page">Presentes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section style="padding-top: calc(var(--space-2xl) + 3rem);">
+      <div class="container">
+        <span class="section-eyebrow">Com carinho</span>
+        <h1 style="text-align:center;">Lista de Presentes</h1>
+        <hr class="divider" />
+        <p class="section-lede">Sua presença é o maior presente. Se desejar nos presentear, preparamos esta lista com carinho — basta escolher um item e usar o QR Code para contribuir.</p>
+
+        <div class="gifts-grid" id="giftsGrid" data-reveal></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="qr-modal" id="qrModal" data-open="false" role="dialog" aria-modal="true" aria-labelledby="qrModalName">
+    <div class="qr-modal__backdrop" data-close-modal></div>
+    <div class="qr-modal__panel">
+      <button class="qr-modal__close" data-close-modal aria-label="Fechar">&times;</button>
+      <h3 class="qr-modal__name" id="qrModalName"></h3>
+      <p class="qr-modal__price" id="qrModalPrice"></p>
+      <img class="qr-modal__image" id="qrModalImage" src="/assets/images/gifts/qr-code.jpeg" alt="" width="220" height="220" />
+      <p class="qr-modal__hint">Escaneie o QR Code para contribuir com este presente.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p class="site-footer__monogram">J &amp; C</p>
+    <p class="site-footer__date">28 de novembro de 2026</p>
+  </footer>
+
+  <script src="assets/js/gifts.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

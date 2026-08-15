@@ -1,0 +1,652 @@
+/* =========================================================
+   Site do Casamento — Júlia & Cícero
+   Ordem: reset > variaveis > base > tipografia > layout >
+   header > hero > secoes > galeria > cerimonia > mapa >
+   presentes > footer > utilitarios > media queries
+   ========================================================= */
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Variaveis ---------- */
+:root {
+  /* Paleta oficial */
+  --color-navy: #1a1f2b;
+  --color-indigo: #3a4a68;
+  --color-soft-blue: #5b6c8f;
+  --color-beige: #e5ddcf;
+  --color-champagne: #dbc3a5;
+  --color-neutral: #e8ddcb;
+  --color-ivory: #f4f2ee;
+
+  --color-text: var(--color-ivory);
+  --color-text-soft: var(--color-champagne);
+  --color-background: var(--color-navy);
+  --color-surface: var(--color-indigo);
+  --color-border: var(--color-soft-blue);
+
+  /* Tipografia */
+  --font-heading: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Cormorant Garamond", "Georgia", serif;
+
+  /* Espacamento */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --content-width: 1100px;
+  --content-padding: clamp(1.25rem, 4vw, 3rem);
+  --radius-soft: 2px;
+
+  /* Animacao */
+  --transition-fast: 200ms ease;
+  --transition-base: 400ms ease;
+}
+
+/* ---------- Base ---------- */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  overflow-x: hidden;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-indigo);
+  outline-offset: 3px;
+}
+
+/* ---------- Tipografia ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-ivory);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  text-align: center;
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+}
+
+.section-eyebrow {
+  display: block;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.section-lede {
+  max-width: 640px;
+  margin: var(--space-sm) auto 0;
+  text-align: center;
+  color: var(--color-text-soft);
+}
+
+.divider {
+  width: 64px;
+  height: 1px;
+  background-color: var(--color-champagne);
+  margin: var(--space-md) auto;
+  border: none;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--content-padding);
+}
+
+section {
+  padding-block: var(--space-2xl);
+}
+
+.section--alt {
+  background-color: var(--color-surface);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 100;
+  background-color: rgba(26, 31, 43, 0.9);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+}
+
+.site-header__monogram {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--color-ivory);
+  letter-spacing: 0.1em;
+}
+
+.site-nav__list {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.site-nav__link {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  transition: color var(--transition-fast);
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"] {
+  color: var(--color-ivory);
+}
+
+.nav-toggle {
+  display: none;
+  width: 32px;
+  height: 24px;
+  position: relative;
+}
+
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background-color: var(--color-ivory);
+  transition: transform var(--transition-fast);
+}
+
+.nav-toggle__bar {
+  top: 50%;
+}
+
+.nav-toggle__bar::before {
+  top: -9px;
+}
+
+.nav-toggle__bar::after {
+  top: 9px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  color: var(--color-ivory);
+  padding-block-end: var(--space-2xl);
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 31, 43, 0.15) 0%,
+    rgba(26, 31, 43, 0.65) 100%
+  );
+  z-index: -1;
+}
+
+.hero__content {
+  text-align: center;
+  width: 100%;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-heading);
+  font-style: italic;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: var(--color-neutral);
+}
+
+.hero__title {
+  color: var(--color-ivory);
+  margin-block: var(--space-sm);
+}
+
+.hero__date {
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+}
+
+.hero__cta {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: 0.85em 2.2em;
+  border: 1px solid var(--color-ivory);
+  color: var(--color-ivory);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.hero__cta:hover {
+  background-color: var(--color-ivory);
+  color: var(--color-navy);
+}
+
+/* ---------- Apresentacao ---------- */
+.intro__text {
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--color-text-soft);
+}
+
+/* ---------- Galeria ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.gallery__item {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.gallery__item:hover img {
+  transform: scale(1.04);
+}
+
+.gallery__item--wide {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+/* ---------- Cerimonia ---------- */
+.ceremony {
+  display: grid;
+  gap: var(--space-md);
+  max-width: 520px;
+  margin: var(--space-lg) auto 0;
+}
+
+.ceremony__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ceremony__label {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+}
+
+.ceremony__value {
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+/* ---------- Mapa ---------- */
+.map__frame {
+  margin-top: var(--space-lg);
+  border: 1px solid var(--color-border);
+}
+
+.map__frame iframe {
+  width: 100%;
+  height: 400px;
+  border: 0;
+  display: block;
+}
+
+.map__actions {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.85em 2.2em;
+  background-color: var(--color-indigo);
+  color: var(--color-ivory);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+}
+
+.button:hover {
+  background-color: var(--color-soft-blue);
+}
+
+.button--ghost {
+  background-color: transparent;
+  color: var(--color-ivory);
+  border: 1px solid var(--color-ivory);
+}
+
+.button--ghost:hover {
+  background-color: var(--color-ivory);
+  color: var(--color-navy);
+}
+
+/* ---------- Presentes ---------- */
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.gift-card {
+  background-color: var(--color-ivory);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gift-card__image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.gift-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gift-card__body {
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex-grow: 1;
+}
+
+.gift-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-navy);
+}
+
+.gift-card__description {
+  font-size: 0.95rem;
+  color: var(--color-text-soft);
+  flex-grow: 1;
+}
+
+.gift-card__price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-indigo);
+}
+
+.gift-card__button {
+  margin-top: var(--space-xs);
+  width: 100%;
+  text-align: center;
+}
+
+/* ---------- Modal QR Code ---------- */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+}
+
+.qr-modal[data-open="true"] {
+  display: flex;
+}
+
+.qr-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 31, 43, 0.75);
+}
+
+.qr-modal__panel {
+  position: relative;
+  background-color: var(--color-ivory);
+  padding: var(--space-lg);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.qr-modal__close {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-sm);
+  font-size: 1.5rem;
+  color: var(--color-text-soft);
+}
+
+.qr-modal__name {
+  margin-bottom: var(--space-xs);
+}
+
+.qr-modal__price {
+  font-size: 1.4rem;
+  color: var(--color-indigo);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.qr-modal__image {
+  width: 220px;
+  height: 220px;
+  margin-inline: auto;
+  object-fit: contain;
+  background-color: var(--color-surface);
+}
+
+.qr-modal__hint {
+  margin-top: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background-color: var(--color-indigo);
+  color: var(--color-neutral);
+  text-align: center;
+  padding-block: var(--space-lg);
+}
+
+.site-footer__monogram {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--color-ivory);
+}
+
+.site-footer__date {
+  margin-top: var(--space-xs);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Utilitarios ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .gallery__item:hover img {
+    transform: none;
+  }
+}
+
+/* ---------- Media queries ---------- */
+@media (max-width: 768px) {
+  .site-nav {
+    position: fixed;
+    inset-block-start: 60px;
+    inset-inline: 0;
+    background-color: var(--color-navy);
+    border-bottom: 1px solid var(--color-border);
+    transform: translateY(-110%);
+    transition: transform var(--transition-base);
+  }
+
+  .site-nav[data-open="true"] {
+    transform: translateY(0);
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding-block: var(--space-lg);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ceremony__item {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .ceremony__value {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__item--wide {
+    grid-column: span 1;
+  }
+}

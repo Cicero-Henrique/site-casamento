@@ -2,7 +2,7 @@
 
 ## 1. Visao Geral
 
-Site estatico para o casamento de **Cícero e Júlia**, com duas paginas principais:
+Site estatico para o casamento de **Júlia e Cícero**, com duas paginas principais:
 
 - `index.html`: landing page com apresentacao, fotos, informacoes da cerimonia e localizacao.
 - `presentes.html`: lista de presentes simples, elegante e sem comportamento de e-commerce.
@@ -13,7 +13,7 @@ O projeto deve continuar pequeno por dentro e sofisticado por fora: HTML, CSS e 
 
 Essas informacoes sao definitivas e devem aparecer de forma consistente quando forem exibidas:
 
-- **Noivos:** Cícero e Júlia
+- **Noivos:** Júlia e Cícero
 - **Data:** 28/11/2026
 - **Horario:** 11:00
 - **Local:** Igreja Matriz de Baependi

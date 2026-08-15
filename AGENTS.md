@@ -1,6 +1,6 @@
 # AGENTS.md — Site do Casamento
 
-Regras que qualquer agente de IA deve seguir ao trabalhar neste projeto: site estático (HTML/CSS/JS nativos) do casamento de **Cícero & Júlia**, com uma home (apresentação, fotos, cerimônia, mapa) e uma página de presentes.
+Regras que qualquer agente de IA deve seguir ao trabalhar neste projeto: site estático (HTML/CSS/JS nativos) do casamento de **Júlia & Cícero**, com uma home (apresentação, fotos, cerimônia, mapa) e uma página de presentes.
 
 Antes de qualquer mudança: ler este arquivo, ler `PLANNING.md` (escopo, dados oficiais, paleta em tabela, critérios de aceite), inspecionar a estrutura atual e entender o que já existe. Em caso de conflito: instrução explícita mais recente do responsável > `PLANNING.md` (requisitos funcionais) > este arquivo (regras de implementação).
 
