@@ -19,6 +19,7 @@
 </head>
 <body>
   <header class="site-header">
+    <img class="site-header__decor" src="assets/images/decor/arabesco.png" alt="" aria-hidden="true" />
     <div class="container site-header__inner">
       <a href="index.html" class="site-header__monogram">J &amp; C</a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
@@ -63,23 +64,24 @@
         <span class="section-eyebrow">Momentos</span>
         <h2>Nossa galeria</h2>
         <hr class="divider" />
-        <div class="gallery" data-reveal>
-          <div class="gallery__item gallery__item--wide">
-            <img src="assets/images/couple/gallery-01.jpg" alt="Júlia e Cícero" loading="lazy" width="800" height="500" />
+        <div class="carousel" data-reveal>
+          <button type="button" class="carousel__arrow carousel__arrow--prev" aria-label="Foto anterior">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="carousel__viewport">
+            <ul class="carousel__track">
+              <li class="carousel__slide"><img src="assets/images/couple/gallery-01.jpg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" /></li>
+              <li class="carousel__slide"><img src="assets/images/couple/gallery-02.jpg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" /></li>
+              <li class="carousel__slide"><img src="assets/images/couple/gallery-03.jpeg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" /></li>
+              <li class="carousel__slide"><img src="assets/images/couple/gallery-04.jpeg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" /></li>
+              <li class="carousel__slide"><img src="assets/images/couple/gallery-05.jpeg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" /></li>
+            </ul>
           </div>
-          <div class="gallery__item">
-            <img src="assets/images/couple/gallery-02.jpg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" />
-          </div>
-          <div class="gallery__item">
-            <img src="assets/images/couple/gallery-03.jpeg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" />
-          </div>
-          <div class="gallery__item">
-            <img src="assets/images/couple/gallery-04.jpeg" alt="Júlia e Cícero" loading="lazy" width="400" height="533" />
-          </div>
-          <div class="gallery__item gallery__item--wide">
-            <img src="assets/images/couple/gallery-05.jpeg" alt="Júlia e Cícero" loading="lazy" width="800" height="500" />
-          </div>
+          <button type="button" class="carousel__arrow carousel__arrow--next" aria-label="Próxima foto">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
+        <div class="carousel__dots" role="tablist" aria-label="Selecionar foto"></div>
       </div>
     </section>
 
@@ -132,6 +134,7 @@
   </main>
 
   <footer class="site-footer">
+    <img class="site-footer__decor" src="assets/images/decor/arabesco.png" alt="" aria-hidden="true" />
     <p class="site-footer__monogram">J &amp; C</p>
     <p class="site-footer__date">28 de novembro de 2026</p>
   </footer>
