@@ -1,8 +1,8 @@
-# AGENTS.md — Site do Casamento
+# AGENTS.md - Site do Casamento
 
-Regras que qualquer agente de IA deve seguir ao trabalhar neste projeto: site estático (HTML/CSS/JS nativos) do casamento de **Júlia & Cícero**, com uma home (apresentação, fotos, cerimônia, mapa) e uma página de presentes.
+Regras para qualquer agente de IA que trabalhar neste projeto. Este é um site estático do casamento de **Júlia & Cícero**, feito com HTML, CSS e JavaScript nativos, com uma página inicial e uma página de presentes.
 
-Antes de qualquer mudança: ler este arquivo, ler `PLANNING.md` (escopo, dados oficiais, paleta em tabela, critérios de aceite), inspecionar a estrutura atual e entender o que já existe. Em caso de conflito: instrução explícita mais recente do responsável > `PLANNING.md` (requisitos funcionais) > este arquivo (regras de implementação).
+Antes de qualquer mudança: leia este arquivo, leia `PLANNING.md`, inspecione a estrutura atual e entenda o que já existe. Em caso de conflito, siga esta ordem: instrução explícita mais recente do responsável > `PLANNING.md` > este arquivo.
 
 Objetivo: manter o projeto simples por dentro e sofisticado por fora.
 
@@ -10,95 +10,271 @@ Objetivo: manter o projeto simples por dentro e sofisticado por fora.
 
 ## 1. Stack
 
-Apenas HTML5, CSS3 e JavaScript nativo, sem build/transpiler.
+Use apenas:
 
-**Não usar:** frameworks (React, Next.js, Vue, Angular, Svelte, Astro), Tailwind/Bootstrap, jQuery, Node.js como requisito de execução, bundlers, banco de dados, backend, CMS, autenticação, API própria, servidor de aplicação.
+- HTML5;
+- CSS3;
+- JavaScript nativo;
+- arquivos estáticos em `assets/`.
 
-Se alguma dessas tecnologias parecer necessária, explicar antes por que HTML/CSS/JS nativos deixaram de ser suficientes. Não instalar nada por conveniência.
+Não usar: frameworks, Tailwind, Bootstrap, jQuery, Node.js como requisito de execução, bundlers, banco de dados, backend, CMS, autenticação, API própria ou servidor de aplicação.
 
-**Sem banco de dados, sob nenhuma hipótese.** A lista de presentes é estática, em `assets/js/gifts.js` (ver modelo em `PLANNING.md`). Nunca usar `localStorage` para simular estado global (ex.: presente "reservado") entre convidados — se isso for pedido no futuro, é mudança de escopo e requer discussão antes de implementar.
+Se alguma tecnologia nova parecer necessária, explique antes por que HTML/CSS/JS nativos deixaram de ser suficientes. Não instalar nada por conveniência.
 
-## 2. Estrutura de arquivos
+**Sem banco de dados, sob nenhuma hipótese.** A lista de presentes é estática em `assets/js/gifts.js`. Nunca usar `localStorage` para simular estado global entre convidados, como presente reservado, comprado ou indisponível. Se isso for pedido, é mudança de escopo e precisa ser discutida antes.
+
+## 2. Estado Atual do Projeto
+
+Arquivos principais atuais:
 
 ```text
 /
-├── index.html
-├── presentes.html
-├── AGENTS.md
-├── PLANNING.md
-├── assets/
-│   ├── css/styles.css
-│   ├── js/ (main.js, gifts.js)
-│   ├── images/ (couple/, gifts/, decorative/, textures/)
-│   └── icons/
-├── favicon.ico
-└── robots.txt
+|-- index.html
+|-- presentes.html
+|-- AGENTS.md
+|-- PLANNING.md
+|-- README.md
+|-- LICENSE
+|-- robots.txt
+|-- paleta.jpeg
+`-- assets/
+    |-- css/styles.css
+    |-- icons/favicon.svg
+    |-- images/
+    |   |-- couple/
+    |   |-- decor/
+    |   |-- decorative/
+    |   |-- gifts/
+    |   `-- textures/
+    `-- js/
+        |-- gifts.js
+        `-- main.js
 ```
 
-Simplificar quando um diretório não for necessário. Não criar pastas vazias ou abstrações prematuras.
+Observações importantes:
 
-## 3. Identidade visual
+- `assets/images/decor/arabesco.png` é o ornamento usado no fundo atual.
+- `assets/images/decorative/` e `assets/images/textures/` existem, mas estão vazios no momento desta atualização.
+- `assets/images/couple/og-cover.jpg` é referenciado nos metadados Open Graph, mas o arquivo ainda não existe.
+- Algumas imagens em `assets/images/couple/` e `assets/images/gifts/` ainda são grandes demais para uso final sem otimização.
+- Na análise feita para esta atualização, havia alterações locais não comitadas em `assets/css/styles.css` e `assets/images/decor/arabesco.png`; não reverta nada sem pedido explícito.
 
-Direção: **elegante + rústica + medieval sutil + romântica + leve** — como um convite de casamento clássico em papel artesanal, com tipografia serifada e ornamentos botânicos discretos. Referência visual: `paleta.jpeg`. A paleta oficial (hex + uso recomendado) está em `PLANNING.md`; centralizar sempre em variáveis CSS no `:root`, nunca hex soltos pelo código. Utilizar arabescos dourados suaves verticais nas duas laterais da página.
+## 3. Dados Oficiais
 
-Evitar: RPG/fantasia medieval exagerada, pergaminho amarelado artificial, dourado brilhante, neon, glassmorphism, sombras fortes tipo dashboard, cards flutuantes em excesso, border-radius grande, estética de e-commerce/loja.
+Use estes dados exatamente quando forem exibidos:
 
-Tipografia: no máximo duas famílias (ex.: Cinzel/Cormorant Garamond para títulos, Cormorant Garamond/Libre Baskerville para corpo). Google Fonts é aceitável, mas com poucas famílias/pesos e `font-display: swap`.
+- **Noivos:** Júlia e Cícero
+- **Data:** 28 de novembro de 2026
+- **Horário:** 11h
+- **Local:** Igreja Matriz de Baependi
+- **Cidade:** Baependi, MG
 
-Princípio para qualquer dúvida visual: elegância > efeitos, legibilidade > decoração, fotografia > gráficos, simplicidade > abstração, espaço > densidade.
+Não inventar endereço completo, telefones, e-mails, nomes de familiares, história do casal ou textos pessoais finais. Use placeholders explícitos, como `[Texto a definir]`, até que o conteúdo seja fornecido.
 
-## 4. Fotos, galeria e Hero
+## 4. Identidade Visual
 
-Fotos são protagonistas: nunca deformar, preservar proporção, `loading="lazy"` abaixo da dobra, `width`/`height` quando possível, WebP/AVIF, otimizar antes de adicionar (nunca servir uma imagem de vários MB para uma miniatura). Filtros apenas muito sutis, se necessário para consistência.
+Direção: **elegante + rústica + medieval sutil + romântica + leve**.
 
-Hero ocupa ~80–100vh, prioriza nomes + data + foto; elementos gráficos não competem com a foto. Galeria simples (grid/mosaico/sequência); não instalar biblioteca de carrossel — se precisar de um, implementar pequeno em JS nativo.
+A referência visual é `paleta.jpeg`: convite claro, papel texturizado, serifas, ornamentos botânicos finos, molduras delicadas e contraste entre azul profundo e tons claros.
 
-## 5. Google Maps
+O visual implementado atualmente usa:
 
-Preferir Google Maps Embed (iframe) a Maps JavaScript API. Não usar API key sem necessidade. Sempre oferecer também um link "Abrir no Google Maps".
+- fundo principal azul marinho profundo;
+- texto claro em marfim/champagne;
+- seções alternadas em azul índigo translúcido;
+- arabesco decorativo aplicado ao `body`;
+- tipografia Cormorant Garamond para títulos e corpo;
+- monograma `J & C`.
 
-## 6. Código CSS
+Evitar:
 
-Ordem sugerida no arquivo: reset → variáveis → base → tipografia → layout → header → hero → seções → galeria → cerimônia → mapa → presentes → footer → utilitários → media queries.
+- fantasia medieval pesada;
+- estética de RPG, castelo, armadura ou pergaminho artificial;
+- dourado brilhante;
+- neon;
+- glassmorphism;
+- sombras fortes de dashboard;
+- excesso de cards flutuantes;
+- estética de marketplace ou e-commerce.
 
-Nomenclatura próxima de BEM sem rigidez (`.hero__title`, `.gift-card__image`); evitar nomes genéricos (`.box1`, `.div3`). Centralizar espaçamento e medidas em variáveis (`--space-*`, `--content-width`, etc.), evitando valores arbitrários repetidos.
+Princípio visual: elegância > efeitos, legibilidade > decoração, fotografia > gráficos, simplicidade > abstração, espaço > densidade.
 
-## 7. Código JavaScript
+## 5. Paleta e CSS
 
-Usar apenas quando necessário (menu mobile, animações leves, renderização de presentes, galeria/carrossel simples). Funções pequenas e nomeadas por responsabilidade (`setupMobileMenu`, `renderGifts`). Sem estado global, sem classes/abstrações desnecessárias, sem SPA/roteamento client-side.
+Centralize cores em variáveis CSS no `:root`. Não espalhar hex soltos pelo código, exceto em ativos isolados como SVG de favicon.
 
-Validar se um elemento existe antes de manipulá-lo; progressive enhancement — o conteúdo principal deve funcionar mesmo se o JS falhar.
+Variáveis atuais em `assets/css/styles.css`:
 
-## 8. HTML, acessibilidade e SEO
+```css
+:root {
+  --color-navy: #1a1f2b;
+  --color-indigo: #3a4a68;
+  --color-soft-blue: #5b6c8f;
+  --color-beige: #e5ddcf;
+  --color-champagne: #dbc3a5;
+  --color-neutral: #e8ddcb;
+  --color-ivory: #f4f2ee;
+}
+```
 
-HTML semântico (`header`, `nav`, `main`, `section`, `article`, `figure`, `footer`), um único `<h1>` por página, hierarquia correta de headings. `alt` significativo em fotos importantes, foco visível, contraste adequado, `aria-hidden="true"` em elementos puramente decorativos.
+Ordem sugerida do CSS:
 
-Cada página com `<title>`, `meta description`, `meta viewport` e Open Graph completo (`og:title`, `og:description`, `og:image`, `og:type`) — importante para compartilhamento no WhatsApp. Favicon simples (iniciais/monograma/ramo), legível em tamanho pequeno.
+```text
+reset > variáveis > base > tipografia > layout > header > hero > seções > galeria > cerimônia > mapa > presentes > footer > utilitários > media queries
+```
 
-## 9. Animações e responsividade
+Use nomenclatura próxima de BEM sem rigidez, como `.hero__title` e `.gift-card__image`. Evite nomes genéricos. Centralize espaçamentos e medidas em variáveis quando houver repetição real.
 
-Animações discretas (fade-in, reveal, hover sutil), 150–600ms; respeitar `prefers-reduced-motion: reduce`. Sem parallax pesado, partículas ou efeitos 3D.
+Evite adicionar novos estilos inline. Se mexer em trechos que já têm `style=""`, prefira mover para classes em `assets/css/styles.css` quando isso estiver dentro do escopo da tarefa.
 
-Mobile-first; testar em ~360/390/768/1024/1440px. Em telas pequenas: reduzir ornamentação, garantir botões clicáveis e mapa dentro da viewport, empilhar cards.
+## 6. HTML, SEO e Acessibilidade
 
-## 10. Segurança e privacidade
+Use HTML semântico com `header`, `nav`, `main`, `section`, `article`, `figure` e `footer` quando fizer sentido.
 
-Nada de credenciais, tokens ou API keys no código. `rel="noopener noreferrer"` em links externos com `target="_blank"`. Não inserir HTML externo sem sanitização.
+Regras:
 
-Nunca inventar dados pessoais (endereço completo, telefones, e-mails, nomes de familiares, história do casal) — usar placeholders explícitos (`[Texto a definir]`) até que sejam fornecidos. Os dados já oficiais (nomes, data, horário, igreja — ver `PLANNING.md`) não são placeholders e devem ser usados tal como são, em qualquer seção que os exiba.
+- um único `<h1>` por página;
+- hierarquia correta de headings;
+- `alt` significativo em imagens importantes;
+- `aria-hidden="true"` em decoração pura;
+- foco visível em links e botões;
+- links externos com `target="_blank"` devem usar `rel="noopener noreferrer"`;
+- cada página deve ter `<title>`, `meta description`, `meta viewport` e Open Graph completo.
 
-## 11. Fluxo de trabalho
+O Open Graph atual precisa de atenção porque `assets/images/couple/og-cover.jpg` é referenciado mas não existe.
 
-Para cada tarefa: ler a solicitação → consultar `PLANNING.md` e este arquivo → inspecionar arquivos relevantes → implementar a solução mais simples que resolve o pedido → validar visual e funcionalmente → reportar objetivamente o que mudou.
+## 7. Fotos, Galeria e Hero
 
-Antes de adicionar algo, perguntar:
+Fotos são protagonistas. Nunca deformar imagens. Preserve proporção com `object-fit`, use `loading="lazy"` abaixo da dobra e informe `width`/`height` quando possível.
 
-- **Funcionalidade nova:** é necessária para um convidado usar o site? Se não, provavelmente fica fora do MVP.
-- **Tecnologia nova:** HTML/CSS/JS nativos realmente não resolvem de forma simples?
-- **Abstração nova (helper/classe/componente):** existe repetição real suficiente para justificar?
+Estado atual:
 
-Mudanças arquiteturais grandes exigem explicar antes: problema atual, por que a estrutura atual não resolve, o que está sendo proposto, arquivos afetados, por que vale a complexidade.
+- o hero usa `assets/images/couple/hero.jpg`;
+- a galeria usa cinco imagens em `assets/images/couple/`;
+- o carrossel é implementado em JavaScript nativo, sem biblioteca;
+- as imagens `hero.jpg`, `gallery-01.jpg` e `gallery-02.jpg` ainda estão pesadas para entrega final.
 
-## 12. Git e conteúdo existente
+Antes de adicionar novas imagens, otimize para WebP/AVIF ou JPEG comprimido em tamanho adequado. Não servir imagem de vários MB para miniatura.
 
-Commits pequenos e coesos (não misturar visual + refactor + feature + fix não relacionado no mesmo commit). Nunca usar comandos destrutivos de Git sem pedido explícito. Nunca apagar fotos, textos, dados ou arquivos de planejamento sem entender por que existem — se algo parecer obsoleto, avisar antes de remover.
+## 8. Página Inicial
+
+`index.html` contém atualmente:
+
+- header fixo com navegação;
+- hero com foto, nomes, data e CTA;
+- seção de apresentação com placeholder;
+- carrossel de fotos;
+- seção de cerimônia;
+- Google Maps Embed;
+- link externo para abrir no Google Maps;
+- footer com monograma e data.
+
+Mantenha a home como uma composição editorial contínua, com ritmo calmo e visual de convite.
+
+## 9. Página de Presentes
+
+`presentes.html` contém:
+
+- header e footer compartilhando a identidade da home;
+- texto introdutório;
+- grid renderizado por `assets/js/gifts.js`;
+- modal de QR Code ao clicar em `Presentear`.
+
+`assets/js/gifts.js` contém atualmente cinco presentes:
+
+- Lanche;
+- Carro;
+- Vaca cabeluda;
+- Café;
+- Geladeira de monster.
+
+Todos usam o mesmo arquivo `assets/images/gifts/qr-code.jpeg`. Isso é uma decisão atual do conteúdo, não um estado global.
+
+Não implementar carrinho, checkout, reserva, compra, indisponibilidade ou confirmação sem uma fonte real de dados.
+
+## 10. JavaScript
+
+Use JavaScript apenas para interações necessárias.
+
+Funções atuais:
+
+- `setupMobileMenu`;
+- `setupRevealOnScroll`;
+- `setupCarousel`;
+- `renderGifts`;
+- `openGiftModal`;
+- `closeGiftModal`;
+- `setupGiftModal`.
+
+Regras:
+
+- funções pequenas e nomeadas por responsabilidade;
+- validar se o elemento existe antes de manipulá-lo;
+- manter progressive enhancement;
+- evitar classes e abstrações sem necessidade;
+- não criar SPA ou roteamento client-side;
+- ao renderizar HTML a partir de dados, os dados devem ser controlados no próprio arquivo estático.
+
+## 11. Google Maps
+
+Preferir Google Maps Embed via `iframe`, sem API key. Sempre manter também um link "Abrir no Google Maps".
+
+O projeto usa atualmente:
+
+```text
+https://www.google.com/maps?q=Igreja+Matriz+de+Baependi,+Baependi,+MG&output=embed
+```
+
+Não adicionar Maps JavaScript API sem necessidade.
+
+## 12. Responsividade e Animações
+
+Mobile-first. Validar visualmente, quando possível, em larguras próximas de:
+
+- 360px;
+- 390px;
+- 768px;
+- 1024px;
+- 1440px.
+
+Em telas pequenas:
+
+- reduzir ornamentação quando competir com conteúdo;
+- empilhar cards;
+- garantir botões tocáveis;
+- impedir transbordamento de texto, imagem e mapa.
+
+Animações devem ser discretas, entre 150ms e 600ms, e respeitar `prefers-reduced-motion: reduce`. Sem parallax pesado, partículas ou efeitos 3D.
+
+## 13. Segurança e Privacidade
+
+Nunca inserir credenciais, tokens, API keys ou dados pessoais não fornecidos.
+
+Não inserir HTML externo sem sanitização. Como este projeto é estático, prefira conteúdo controlado no repositório.
+
+## 14. Fluxo de Trabalho
+
+Para cada tarefa:
+
+1. ler a solicitação;
+2. consultar `PLANNING.md` e este arquivo;
+3. inspecionar arquivos relevantes;
+4. implementar a solução mais simples que resolve o pedido;
+5. validar visual e funcionalmente;
+6. reportar objetivamente o que mudou.
+
+Antes de adicionar algo, pergunte:
+
+- **Funcionalidade nova:** é necessária para um convidado usar o site?
+- **Tecnologia nova:** HTML/CSS/JS nativos realmente não resolvem?
+- **Abstração nova:** existe repetição real suficiente para justificar?
+
+Mudanças arquiteturais grandes exigem explicar antes o problema atual, por que a estrutura atual não resolve, o que será proposto, arquivos afetados e por que vale a complexidade.
+
+## 15. Git e Conteúdo Existente
+
+Nunca usar comandos destrutivos de Git sem pedido explícito. Não usar `git reset --hard` nem `git checkout --` para apagar trabalho local.
+
+Nunca apagar fotos, textos, dados ou arquivos de planejamento sem entender por que existem. Se algo parecer obsoleto, avise antes de remover.
+
+Ao encontrar mudanças não feitas por você, assuma que vieram do responsável ou de outro agente. Trabalhe com elas e não reverta.

@@ -83,6 +83,12 @@ ul {
 /* ---------- Base ---------- */
 body {
   background-color: var(--color-background);
+  background-image: url("../images/decor/arabesco.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 1.125rem;
@@ -163,7 +169,7 @@ section {
 }
 
 .section--alt {
-  background-color: var(--color-surface);
+  background-color: rgba(58, 74, 104, 0.75);
 }
 
 /* ---------- Header ---------- */
