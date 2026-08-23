@@ -5,6 +5,20 @@
    presentes > footer > utilitarios > media queries
    ========================================================= */
 
+/* ---------- Fontes locais ----------
+   "Aphrodite Slim" e uma fonte paga, sem distribuicao gratuita via
+   Google Fonts. Assim que o arquivo licenciado for adicionado em
+   assets/fonts/, esta declaracao passa a valer automaticamente
+   (ver --font-script em :root); ate la, a pilha usa "Tangerine"
+   como substituta caligrafica. */
+@font-face {
+  font-family: "Aphrodite Slim";
+  src: url("../fonts/aphrodite-slim.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------- Reset ---------- */
 *,
 *::before,
@@ -61,6 +75,13 @@ ul {
   /* Tipografia */
   --font-heading: "Cormorant Garamond", "Georgia", serif;
   --font-body: "Cormorant Garamond", "Georgia", serif;
+
+  /* Cartao de destaque (historia / playlist) */
+  --color-card-navy: #1b2a4a;
+  --color-gold: #d4af37;
+  --color-offwhite: #fdfbf7;
+  --font-script: "Aphrodite Slim", "Tangerine", cursive;
+  --font-serif-clean: "EB Garamond", "Lora", serif;
 
   /* Espacamento */
   --space-xs: 0.5rem;
@@ -401,6 +422,58 @@ section {
   color: var(--color-text-soft);
 }
 
+/* ---------- Cartao de destaque (historia / playlist) ---------- */
+.story-card {
+  max-width: 720px;
+  margin: var(--space-lg) auto 0;
+  padding: var(--space-lg) var(--content-padding);
+  background-color: rgb(27 42 74 / 85%);
+  border: 1px solid rgb(212 175 55 / 25%);
+  border-radius: 12px;
+}
+
+.story-card__title {
+  font-family: var(--font-script);
+  color: var(--color-gold);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.story-card__text {
+  font-family: var(--font-serif-clean);
+  color: var(--color-offwhite);
+  text-align: center;
+  max-width: 640px;
+  margin: var(--space-sm) auto 0;
+}
+
+.story-card .divider {
+  background-color: var(--color-gold);
+}
+
+.story-card .section-eyebrow {
+  color: var(--color-gold);
+}
+
+.story-card__cta {
+  display: inline-block;
+  margin-top: var(--space-md);
+  padding: 0.85em 2.2em;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.story-card__cta:hover {
+  background-color: var(--color-gold);
+  color: var(--color-card-navy);
+}
+
 /* ---------- Galeria (carrossel) ---------- */
 .carousel {
   --carousel-visible: 3;
@@ -562,7 +635,7 @@ section {
 /* ---------- Trilha sonora ---------- */
 .playlist__frame {
   margin-top: var(--space-lg);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgb(212 175 55 / 35%);
   border-radius: 12px;
   overflow: hidden;
   line-height: 0;
@@ -581,22 +654,25 @@ section {
   display: flex;
   align-items: center;
   gap: var(--space-md);
+  max-width: 720px;
+  padding: var(--space-sm) var(--space-md);
+  background-color: rgb(27 42 74 / 85%);
+  border: 1px solid rgb(212 175 55 / 25%);
+  border-radius: 12px;
 }
 
 .playlist-mini__label {
   flex: 0 0 auto;
-  font-family: var(--font-heading);
-  font-style: italic;
-  color: var(--color-champagne);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-family: var(--font-script);
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
   white-space: nowrap;
 }
 
 .playlist-mini__frame {
   flex: 1 1 auto;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgb(212 175 55 / 25%);
   border-radius: 8px;
   overflow: hidden;
   line-height: 0;
