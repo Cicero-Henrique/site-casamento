@@ -186,9 +186,161 @@ function setupCountdown() {
   }, 1000);
 }
 
+const QUIZ_QUESTIONS = [
+  {
+    text: "Quem demora mais para se arrumar?",
+    options: [
+      { label: "Ele, sem dúvida", persona: "b" },
+      { label: "Ela, com certeza", persona: "a" },
+      { label: "Os dois, sempre atrasados juntos", persona: "c" },
+    ],
+  },
+  {
+    text: "Quem escolhe o restaurante?",
+    options: [
+      { label: "Ela decide na hora", persona: "a" },
+      { label: "Ele já tem um favorito na manga", persona: "b" },
+      { label: "Depende de quem está com mais fome", persona: "c" },
+    ],
+  },
+  {
+    text: "Quem é mais provável de esquecer alguma coisa no casamento?",
+    options: [
+      { label: "Ela", persona: "a" },
+      { label: "Ele", persona: "b" },
+      { label: "Só vamos descobrir no dia", persona: "c" },
+    ],
+  },
+  {
+    text: "Quem manda a primeira mensagem depois de uma bobagem?",
+    options: [
+      { label: "Ela, sempre", persona: "a" },
+      { label: "Ele, com um emoji de coração", persona: "b" },
+      { label: "Ninguém, o silêncio já resolve sozinho", persona: "c" },
+    ],
+  },
+  {
+    text: "Na pista de dança, quem puxa o casal pra dançar primeiro?",
+    options: [
+      { label: "Ela", persona: "a" },
+      { label: "Ele", persona: "b" },
+      { label: "A música é quem decide", persona: "c" },
+    ],
+  },
+];
+
+const QUIZ_RESULTS = {
+  a: {
+    title: "Você é do time Júlia",
+    text: "Sensível, atenta aos detalhes e sempre pronta pra ajudar a organizar tudo.",
+  },
+  b: {
+    title: "Você é do time Cícero",
+    text: "Descontraído, com uma piada na manga pra deixar qualquer clima mais leve.",
+  },
+  c: {
+    title: "Você é do time “Só o Amor Explica”",
+    text: "Você entende que nem tudo precisa fazer sentido — só precisa ser bonito.",
+  },
+};
+
+function setupQuiz() {
+  const root = document.getElementById("quizRoot");
+  const progress = document.getElementById("quizProgress");
+  const questionBlock = document.getElementById("quizQuestion");
+  const questionText = document.getElementById("quizQuestionText");
+  const optionsContainer = document.getElementById("quizOptions");
+  const resultBlock = document.getElementById("quizResult");
+  const resultTitle = document.getElementById("quizResultTitle");
+  const resultText = document.getElementById("quizResultText");
+  const restartButton = document.getElementById("quizRestart");
+  if (!root || !questionBlock || !optionsContainer || !resultBlock) return;
+
+  let currentIndex = 0;
+  const scores = { a: 0, b: 0, c: 0 };
+
+  function renderProgress() {
+    progress.innerHTML = "";
+    QUIZ_QUESTIONS.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.className = "quiz__dot";
+      dot.dataset.state = i < currentIndex ? "done" : i === currentIndex ? "active" : "";
+      progress.appendChild(dot);
+    });
+  }
+
+  function renderQuestion() {
+    const question = QUIZ_QUESTIONS[currentIndex];
+    questionText.textContent = question.text;
+    optionsContainer.innerHTML = "";
+
+    question.options.forEach((option) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "quiz__option";
+      card.textContent = option.label;
+      card.addEventListener("click", () => selectOption(option));
+      optionsContainer.appendChild(card);
+    });
+
+    renderProgress();
+    transitionIn(questionBlock);
+  }
+
+  function transitionIn(element) {
+    element.dataset.state = "entering";
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        element.dataset.state = "";
+      });
+    });
+  }
+
+  function selectOption(option) {
+    scores[option.persona] += 1;
+
+    if (currentIndex < QUIZ_QUESTIONS.length - 1) {
+      currentIndex += 1;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    const winner = Object.keys(scores).reduce((best, key) =>
+      scores[key] > scores[best] ? key : best
+    , "a");
+    const result = QUIZ_RESULTS[winner];
+
+    questionBlock.hidden = true;
+    resultTitle.textContent = result.title;
+    resultText.textContent = result.text;
+    resultBlock.hidden = false;
+    transitionIn(resultBlock);
+  }
+
+  function restart() {
+    currentIndex = 0;
+    scores.a = 0;
+    scores.b = 0;
+    scores.c = 0;
+    resultBlock.hidden = true;
+    questionBlock.hidden = false;
+    renderQuestion();
+  }
+
+  if (restartButton) {
+    restartButton.addEventListener("click", restart);
+  }
+
+  renderQuestion();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupRevealOnScroll();
   setupCarousel();
   setupCountdown();
+  setupQuiz();
 });

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curiosidades | Júlia &amp; Cícero</title>
+  <meta name="description" content="A trilha sonora, um quiz descontraído e o álbum colaborativo do casamento de Júlia e Cícero." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Curiosidades | Júlia & Cícero" />
+  <meta property="og:description" content="A trilha sonora, um quiz descontraído e o álbum colaborativo do casamento de Júlia e Cícero." />
+  <meta property="og:image" content="assets/images/couple/og-cover.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Cinzel:wght@500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__monogram">J &amp; C</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="nav-toggle__bar"></span>
+        <span class="visually-hidden">Abrir menu</span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="index.html">Início</a></li>
+          <li><a class="site-nav__link" href="cerimonia.html">Cerimônia</a></li>
+          <li><a class="site-nav__link" href="curiosidades.html" aria-current="page">Curiosidades</a></li>
+          <li><a class="site-nav__link" href="presentes.html">Presentes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Trilha sonora -->
+    <section class="page-section--first" id="trilha-sonora">
+      <div class="container">
+        <span class="section-eyebrow">Playlist</span>
+        <h1 class="page-title">A trilha sonora da nossa história</h1>
+        <hr class="divider" />
+        <p class="section-lede">As músicas que tocaram em fases diferentes da nossa história — e algumas que simplesmente não conseguimos deixar de fora.</p>
+        <div class="playlist__frame" data-reveal>
+          <iframe
+            title="Playlist de Júlia e Cícero no Spotify"
+            src="https://open.spotify.com/embed/playlist/3IgFuA7gMbmbnfP3sxpfJq?utm_source=generator"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+        <p class="playlist__actions">
+          <a class="button" href="https://open.spotify.com/playlist/3IgFuA7gMbmbnfP3sxpfJq" target="_blank" rel="noopener noreferrer">Ouvir no Spotify</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="section--alt" id="quiz">
+      <div class="container">
+        <span class="section-eyebrow">Vamos brincar?</span>
+        <h2>Coisas que você precisa saber sobre nós</h2>
+        <hr class="divider" />
+        <p class="section-lede">Um mini quiz sem respostas certas — só pra descobrir de que time você é.</p>
+
+        <div class="quiz" id="quizRoot" data-reveal>
+          <div class="quiz__progress" id="quizProgress" aria-hidden="true"></div>
+
+          <div class="quiz__question" id="quizQuestion">
+            <h3 class="quiz__question-text" id="quizQuestionText"></h3>
+            <div class="quiz__options" id="quizOptions"></div>
+          </div>
+
+          <div class="quiz__result" id="quizResult" hidden>
+            <p class="quiz__result-eyebrow">Resultado</p>
+            <h3 class="quiz__result-title" id="quizResultTitle"></h3>
+            <p class="quiz__result-text" id="quizResultText"></p>
+            <button type="button" class="button button--ghost" id="quizRestart">Jogar de novo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Album colaborativo -->
+    <section id="album">
+      <div class="container">
+        <span class="section-eyebrow">Registre com a gente</span>
+        <h2>Você está oficialmente convidado a aparecer nas nossas fotos</h2>
+        <hr class="divider" />
+        <p class="section-lede">Crie um álbum colaborativo e envie os cliques que você fizer durante a celebração. Queremos ver a festa pelos seus olhos também.</p>
+        <p class="album__actions">
+          <a class="button" href="#" target="_blank" rel="noopener noreferrer">Enviar fotos</a>
+        </p>
+        <p class="album__note">[Link do álbum colaborativo a definir]</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__monogram">J &amp; C</p>
+    <p class="site-footer__date">28 de novembro de 2026</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

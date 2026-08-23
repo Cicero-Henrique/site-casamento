@@ -240,6 +240,14 @@ section {
   background-color: rgba(58, 74, 104, 0.75);
 }
 
+.page-section--first {
+  padding-top: calc(var(--space-2xl) + 3rem);
+}
+
+.page-title {
+  text-align: center;
+}
+
 /* ---------- Header ---------- */
 .site-header {
   position: fixed;
@@ -551,6 +559,163 @@ section {
   color: var(--color-navy);
 }
 
+/* ---------- Trilha sonora ---------- */
+.playlist__frame {
+  margin-top: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.playlist__actions {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+.playlist-mini {
+  padding-block: var(--space-sm);
+}
+
+.playlist-mini__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.playlist-mini__label {
+  flex: 0 0 auto;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.playlist-mini__frame {
+  flex: 1 1 auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* ---------- Quiz ---------- */
+.quiz {
+  max-width: 640px;
+  margin: var(--space-lg) auto 0;
+}
+
+.quiz__progress {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.quiz__progress .quiz__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  transition: background-color var(--transition-fast);
+}
+
+.quiz__progress .quiz__dot[data-state="active"] {
+  background-color: var(--color-champagne);
+}
+
+.quiz__progress .quiz__dot[data-state="done"] {
+  background-color: var(--color-soft-blue);
+}
+
+.quiz__question {
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.quiz__question[data-state="entering"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.quiz__question-text {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.quiz__options {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.quiz__option {
+  display: block;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  text-align: center;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.quiz__option:hover {
+  background-color: var(--color-soft-blue);
+  border-color: var(--color-champagne);
+}
+
+.quiz__option:active {
+  transform: scale(0.98);
+}
+
+.quiz__result {
+  text-align: center;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.quiz__result[data-state="entering"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.quiz__result-eyebrow {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-xs);
+}
+
+.quiz__result-title {
+  margin-bottom: var(--space-sm);
+}
+
+.quiz__result-text {
+  color: var(--color-text-soft);
+  max-width: 480px;
+  margin: 0 auto var(--space-lg);
+}
+
+/* ---------- Album colaborativo ---------- */
+.album__actions {
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+.album__note {
+  text-align: center;
+  margin-top: var(--space-xs);
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+  font-style: italic;
+}
+
 /* ---------- Presentes ---------- */
 .gifts-grid {
   display: grid;
@@ -734,6 +899,11 @@ section {
   .carousel__track {
     transition: none;
   }
+
+  .quiz__question,
+  .quiz__result {
+    transition: none;
+  }
 }
 
 /* ---------- Media queries ---------- */
@@ -774,6 +944,16 @@ section {
 
   .ceremony__value {
     text-align: left;
+  }
+
+  .playlist-mini__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-xs);
+  }
+
+  .playlist-mini__label {
+    text-align: center;
   }
 }
 
