@@ -84,7 +84,7 @@ ul {
 body {
   background-color: var(--color-background);
   background-image: url("../images/decor/arabesco.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-position: center top;
   background-size: 100% auto;
   background-attachment: scroll;
