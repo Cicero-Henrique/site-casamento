@@ -663,10 +663,12 @@ section {
 
 .playlist-mini__label {
   flex: 0 0 auto;
-  font-family: var(--font-script);
-  color: var(--color-gold);
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
