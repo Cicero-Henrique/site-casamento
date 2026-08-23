@@ -157,6 +157,74 @@ h3 {
   border: none;
 }
 
+.countdown {
+  padding-block: var(--space-lg);
+}
+
+.countdown__inner {
+  text-align: center;
+}
+
+.countdown__lede {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-xs);
+}
+
+.countdown__clock {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.5rem;
+}
+
+.countdown__value {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--color-ivory);
+  line-height: 1;
+}
+
+.countdown__label {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.countdown__sep {
+  font-family: var(--font-heading);
+  color: var(--color-champagne);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  align-self: flex-start;
+  margin-top: 0.1em;
+}
+
+.countdown__text {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-champagne);
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
 /* ---------- Layout ---------- */
 .container {
   max-width: var(--content-width);

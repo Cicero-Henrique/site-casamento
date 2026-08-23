@@ -136,8 +136,59 @@ function setupCarousel() {
   update();
 }
 
+function setupCountdown() {
+  const root = document.getElementById("countdownRoot");
+  const lede = document.getElementById("countdownLede");
+  const clock = document.getElementById("countdownClock");
+  const afterEl = document.getElementById("countdownAfterText");
+  if (!root || !clock || !afterEl) return;
+
+  const weddingDate = new Date(root.dataset.weddingDate);
+  const afterText = root.dataset.afterText;
+  const values = {
+    days: clock.querySelector('[data-unit="days"]'),
+    hours: clock.querySelector('[data-unit="hours"]'),
+    minutes: clock.querySelector('[data-unit="minutes"]'),
+    seconds: clock.querySelector('[data-unit="seconds"]'),
+  };
+
+  function showFinished() {
+    lede.hidden = true;
+    clock.hidden = true;
+    afterEl.textContent = afterText;
+    afterEl.hidden = false;
+  }
+
+  function tick() {
+    const diff = weddingDate - new Date();
+
+    if (diff <= 0) {
+      showFinished();
+      return false;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    values.days.textContent = String(days);
+    values.hours.textContent = String(hours).padStart(2, "0");
+    values.minutes.textContent = String(minutes).padStart(2, "0");
+    values.seconds.textContent = String(seconds).padStart(2, "0");
+    return true;
+  }
+
+  if (!tick()) return;
+  const intervalId = setInterval(() => {
+    if (!tick()) clearInterval(intervalId);
+  }, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupMobileMenu();
   setupRevealOnScroll();
   setupCarousel();
+  setupCountdown();
 });
