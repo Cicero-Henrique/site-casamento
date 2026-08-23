@@ -2,9 +2,11 @@
 
 ## 1. Visão Geral
 
-Site estático para o casamento de **Júlia e Cícero**, com duas páginas principais:
+Site estático para o casamento de **Júlia e Cícero**, com quatro páginas:
 
-- `index.html`: página inicial com abertura, fotos, informações da cerimônia e localização.
+- `index.html`: página inicial com abertura, trilha sonora, contagem regressiva, história do casal e galeria de fotos.
+- `cerimonia.html`: informações da cerimônia (data, horário, local) e localização com mapa.
+- `curiosidades.html`: playlist completa, quiz descontraído sobre o casal e álbum colaborativo de fotos.
 - `presentes.html`: lista de presentes simples, elegante e sem comportamento de e-commerce.
 
 O projeto deve continuar pequeno por dentro e sofisticado por fora: HTML, CSS e JavaScript nativos, sem backend, banco de dados, framework ou dependência desnecessária.
@@ -25,21 +27,26 @@ Não inventar endereço completo, história do casal, contatos, nomes de familia
 
 O site já possui uma versão funcional com:
 
-- home estática em `index.html`;
-- página de presentes em `presentes.html`;
+- home estática em `index.html`, com trilha sonora mini, contagem regressiva, história do casal (texto final já preenchido) e galeria;
+- página de cerimônia em `cerimonia.html`, com dados da cerimônia, mapa e trilha sonora mini;
+- página de curiosidades em `curiosidades.html`, com playlist completa, quiz interativo e álbum colaborativo (link ainda pendente);
+- página de presentes em `presentes.html`, com trilha sonora mini também presente;
 - CSS central em `assets/css/styles.css`;
-- interações gerais em `assets/js/main.js`;
+- interações gerais em `assets/js/main.js` (menu mobile, reveal on scroll, carrossel, contagem regressiva, quiz);
 - dados e renderização dos presentes em `assets/js/gifts.js`;
 - favicon SVG em `assets/icons/favicon.svg`;
 - foto hero e galeria em `assets/images/couple/`;
 - imagens de presentes e QR Code em `assets/images/gifts/`;
-- arabesco de fundo em `assets/images/decor/arabesco.png`.
+- arabesco de fundo em `assets/images/decor/arabesco.png`, agora repetido verticalmente (`background-repeat: repeat-y`);
+- variantes descartadas do arabesco guardadas em `assets/images/descartadas/` (não usadas no site).
 
 Pontos pendentes conhecidos:
 
 - criar ou ajustar `assets/images/couple/og-cover.jpg`, pois ele é referenciado no Open Graph e ainda não existe;
+- definir o link real do álbum colaborativo em `curiosidades.html` (atualmente `href="#"` com nota `[Link do álbum colaborativo a definir]`);
+- adicionar o arquivo de fonte licenciado `assets/fonts/aphrodite-slim.woff2` (a `@font-face` já está declarada em `styles.css`, mas o arquivo ainda não existe; a pilha usa "Tangerine" como substituta enquanto isso);
+- decidir se as imagens descartadas em `assets/images/descartadas/` devem ser removidas do repositório;
 - otimizar imagens grandes antes de publicação final;
-- substituir placeholders de texto quando os noivos fornecerem conteúdo final;
 - validar console e layout em navegador;
 - publicar o site.
 
@@ -48,9 +55,13 @@ Pontos pendentes conhecidos:
 O site deve permitir que os convidados:
 
 - vejam uma abertura bonita com foto, nomes e data;
+- ouçam a trilha sonora do casal direto na home, cerimônia e presentes;
+- acompanhem a contagem regressiva até o casamento;
 - entendam rapidamente quando e onde será a cerimônia;
 - visualizem fotos do casal;
 - abram a localização da igreja no Google Maps;
+- se divirtam com um quiz curto sobre o casal;
+- acessem o álbum colaborativo para enviar fotos da festa (quando o link for definido);
 - acessem a página de presentes;
 - vejam cada presente em card próprio;
 - cliquem em um presente e visualizem o QR Code correspondente, com o valor acima da imagem;
@@ -61,11 +72,17 @@ O site deve permitir que os convidados:
 Dentro do escopo:
 
 - página inicial;
+- página de cerimônia;
+- página de curiosidades;
 - página de presentes;
-- header discreto com `Início` e `Presentes`;
+- header discreto com `Início`, `Cerimônia`, `Curiosidades` e `Presentes`;
 - hero com fotografia como protagonista;
 - textos curtos de apresentação;
 - galeria/carrossel simples em JS nativo;
+- trilha sonora via embed do Spotify (versão mini recorrente e versão completa em Curiosidades);
+- contagem regressiva até a data do casamento;
+- quiz simples e descontraído sobre o casal, sem gamificação pesada;
+- álbum colaborativo de fotos (link externo, sem upload/hospedagem própria);
 - informações da cerimônia;
 - Google Maps Embed e link externo;
 - cards de presentes estáticos;
@@ -92,6 +109,8 @@ Fora do escopo:
 ```text
 /
 |-- index.html
+|-- cerimonia.html
+|-- curiosidades.html
 |-- presentes.html
 |-- AGENTS.md
 |-- PLANNING.md
@@ -114,19 +133,25 @@ Fora do escopo:
     |   |   `-- gallery-05.jpeg
     |   |-- decor/
     |   |   `-- arabesco.png
-    |   |-- decorative/
-    |   |-- gifts/
-    |   |   |-- cafe.jpg
-    |   |   |-- carro.jpg
-    |   |   |-- lanche.jpg
-    |   |   |-- monster.jpg
-    |   |   |-- qr-code.jpeg
-    |   |   `-- vaca.jpg
-    |   `-- textures/
+    |   |-- descartadas/
+    |   |   |-- arabesco.jpg
+    |   |   |-- arabesco.png
+    |   |   |-- arabesco1.jpeg
+    |   |   |-- arabescos.png
+    |   |   `-- arabescox.jpg
+    |   `-- gifts/
+    |       |-- cafe.jpg
+    |       |-- carro.jpg
+    |       |-- lanche.jpg
+    |       |-- monster.jpg
+    |       |-- qr-code.jpeg
+    |       `-- vaca.jpg
     `-- js/
         |-- gifts.js
         `-- main.js
 ```
+
+`assets/fonts/` ainda não existe: é o destino planejado para `aphrodite-slim.woff2`, referenciado em `styles.css` mas ainda não adicionado.
 
 A estrutura pode ser menor se diretórios vazios deixarem de ser úteis. Não criar novas pastas vazias.
 
@@ -136,11 +161,13 @@ A home deve funcionar como uma composição editorial contínua, com ritmo calmo
 
 Seções atuais:
 
-- **Hero:** foto principal, nomes, data, horário e chamada curta.
-- **Apresentação:** placeholder claro para texto futuro dos noivos.
+- **Hero:** foto principal, nomes, data, horário e chamada curta (`Ver detalhes`, que leva a `cerimonia.html`).
+- **Trilha sonora (mini):** embed compacto do Spotify (`#playlist-mini`), com autoplay, repetido também em `cerimonia.html` e `presentes.html`.
+- **Contagem regressiva:** relógio com dias/horas/minutos/segundos até `2026-11-28T11:00:00-03:00`, calculado em JS (`setupCountdown` em `assets/js/main.js`), com texto alternativo definido em `data-after-text` para quando a data já tiver passado.
+- **Apresentação:** texto final da "Nossa história" já preenchido (não é mais placeholder).
 - **Fotos:** carrossel simples com cinco imagens.
-- **Cerimônia:** data, horário, igreja e cidade.
-- **Localização:** mapa incorporado e botão `Abrir no Google Maps`.
+
+Cerimônia e localização não vivem mais na home — foram movidas para `cerimonia.html` (ver seção 7B).
 
 Prioridades:
 
@@ -148,6 +175,22 @@ Prioridades:
 - texto sempre legível;
 - boa experiência em telas pequenas;
 - decoração medieval apenas como influência refinada, nunca como fantasia pesada.
+
+## 7B. Página de Cerimônia
+
+`cerimonia.html` concentra as informações práticas do grande dia:
+
+- **Cerimônia:** lista de definição (`<dl>`) com data, horário, local e cidade.
+- **Localização:** mapa do Google incorporado via `output=embed` (sem API key) e botão `Abrir no Google Maps` apontando para busca externa.
+- **Trilha sonora (mini):** mesmo bloco `#playlist-mini` usado na home.
+
+## 7C. Página de Curiosidades
+
+`curiosidades.html` reúne conteúdos leves e de interação, sem se misturar com as informações práticas da cerimônia:
+
+- **Trilha sonora (completa):** embed maior do Spotify (sem autoplay) e link `Ouvir no Spotify`.
+- **Quiz:** perguntas e resultados definidos em `QUIZ_QUESTIONS` e `QUIZ_RESULTS` (`assets/js/main.js`), renderizados e controlados por `setupQuiz()`; sem respostas certas/erradas, apenas resultado de "time".
+- **Álbum colaborativo:** convite para os convidados enviarem fotos da festa via link externo. O link ainda não foi definido (`href="#"`), com nota visível `[Link do álbum colaborativo a definir]` — substituir assim que o álbum existir.
 
 ## 8. Página de Presentes
 
@@ -160,7 +203,8 @@ Comportamento atual:
 - cada card mostra imagem, nome, descrição, valor e botão `Presentear`;
 - o clique abre o modal `#qrModal`;
 - o modal mostra nome, valor e QR Code;
-- `Escape`, botão de fechar e clique no fundo fecham o modal.
+- `Escape`, botão de fechar e clique no fundo fecham o modal;
+- abaixo da grade de presentes, a página também exibe o bloco de trilha sonora mini (`#playlist-mini`), igual ao da home e da cerimônia.
 
 Dados atuais em `assets/js/gifts.js`:
 
@@ -242,13 +286,15 @@ Evitar `#DBC3A5` como texto longo em fundo claro. Em áreas claras, usar azul ma
 
 ## 11. Tipografia e Ornamentação
 
-Usar no máximo duas famílias tipográficas.
+Usar no máximo duas famílias tipográficas para leitura corrida; fontes de destaque (script/serif clean) podem complementar em pontos pontuais.
 
-Estado atual:
+Estado atual (variáveis em `:root` de `assets/css/styles.css`):
 
-- títulos e corpo usam `"Cormorant Garamond", "Georgia", serif`;
-- a fonte Cinzel é carregada no HTML, mas não está em uso efetivo no CSS;
-- ornamento principal é `assets/images/decor/arabesco.png`;
+- `--font-heading` e `--font-body`: `"Cormorant Garamond", "Georgia", serif` — títulos e corpo do texto;
+- `--font-script`: `"Aphrodite Slim", "Tangerine", cursive` — fonte caligráfica de destaque; "Aphrodite Slim" é paga e ainda não foi adicionada em `assets/fonts/`, então hoje o site renderiza com "Tangerine";
+- `--font-serif-clean`: `"EB Garamond", "Lora", serif` — usada em pontos que pedem um serifado mais limpo;
+- Google Fonts carrega `Cormorant Garamond`, `Cinzel`, `EB Garamond` e `Tangerine` no `<head>` de todas as páginas; Cinzel segue carregada mas sem uso efetivo direto no CSS;
+- ornamento principal é `assets/images/decor/arabesco.png`, agora repetido verticalmente no fundo (`background-repeat: repeat-y`);
 - monograma atual: `J & C`.
 
 Ornamentos devem ser poucos e refinados:
@@ -297,16 +343,21 @@ Status atual do MVP:
 
 - [x] a home existe;
 - [x] hero, nomes e data estão visíveis no HTML;
-- [ ] texto final de apresentação foi fornecido;
+- [x] texto final de apresentação foi fornecido;
 - [x] fotos principais estão adicionadas;
-- [x] informações da cerimônia estão claras;
+- [x] a página de cerimônia existe, com informações claras (data, horário, local, cidade);
 - [x] mapa e link do Google Maps estão configurados;
+- [x] contagem regressiva funciona e mostra texto alternativo após a data;
+- [x] trilha sonora (mini) toca em home, cerimônia e presentes;
+- [x] a página de curiosidades existe, com playlist completa e quiz funcionando;
+- [ ] link do álbum colaborativo foi definido (hoje é `href="#"`);
 - [x] a página de presentes existe;
 - [x] presentes aparecem em cards via JS;
 - [x] clique no presente abre o QR Code com valor acima;
 - [ ] layout foi validado visualmente em mobile e desktop;
 - [ ] imagens estão otimizadas para publicação final;
 - [ ] `assets/images/couple/og-cover.jpg` existe e funciona no Open Graph;
+- [ ] fonte "Aphrodite Slim" foi licenciada e adicionada em `assets/fonts/`;
 - [x] título, descrição e favicon estão configurados;
 - [ ] não há erros relevantes no console;
 - [ ] site está publicado.
@@ -314,8 +365,10 @@ Status atual do MVP:
 ## 15. Próximas Ações Recomendadas
 
 1. Corrigir ou criar a imagem `assets/images/couple/og-cover.jpg`.
-2. Otimizar imagens grandes da galeria, hero e presentes.
-3. Substituir o placeholder da seção "Nossa história".
-4. Validar o layout em navegador nas larguras-alvo.
-5. Revisar contraste em cards claros da página de presentes.
-6. Publicar quando os conteúdos finais estiverem aprovados.
+2. Definir e adicionar o link real do álbum colaborativo em `curiosidades.html`.
+3. Adicionar `assets/fonts/aphrodite-slim.woff2` quando a fonte for licenciada (ou remover a `@font-face` se a decisão for manter "Tangerine").
+4. Otimizar imagens grandes da galeria, hero e presentes.
+5. Decidir se `assets/images/descartadas/` deve ser removida do repositório.
+6. Validar o layout em navegador nas larguras-alvo, incluindo as novas páginas `cerimonia.html` e `curiosidades.html`.
+7. Revisar contraste em cards claros da página de presentes.
+8. Publicar quando os conteúdos finais estiverem aprovados.
