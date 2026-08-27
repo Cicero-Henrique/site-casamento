@@ -280,7 +280,7 @@ section {
 
 .site-header__inner {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-md);
   padding-block: 0.85rem;
@@ -296,8 +296,8 @@ section {
 }
 
 .site-header__ornament {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
 }
 
