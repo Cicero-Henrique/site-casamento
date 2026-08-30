@@ -78,10 +78,20 @@ ul {
 
   /* Cartao de destaque (historia / playlist) */
   --color-card-navy: #1b2a4a;
-  --color-gold: #d4af37;
+  --color-gold: #c6a15c;
+  --color-gold-muted: #a98a5a;
+  --color-gold-bright: #e8caa0;
   --color-offwhite: #fdfbf7;
   --font-script: "Aphrodite Slim", "Tangerine", cursive;
   --font-serif-clean: "EB Garamond", "Lora", serif;
+
+  /* Sistema navy/dourado (revisao visual) */
+  --navy-deep: #080d17;
+  --navy-surface: #101a2c;
+  --navy-overlay-strong: rgba(7, 11, 20, 0.82);
+  --navy-overlay-soft: rgba(7, 11, 20, 0.4);
+  --text-warm: #f0e6d2;
+  --border-gold: rgba(198, 161, 92, 0.35);
 
   /* Espacamento */
   --space-xs: 0.5rem;
@@ -103,13 +113,14 @@ ul {
 
 /* ---------- Base ---------- */
 body {
-  background-color: var(--color-background);
-  background-image: url("../images/decor/arabesco.png");
-  background-repeat: repeat-y;
-  background-position: center top;
-  background-size: 100% auto;
+  background-color: var(--navy-deep);
+  background-image:
+    linear-gradient(180deg, rgba(6, 10, 18, 0.45) 0%, rgba(10, 16, 28, 0.12) 12%, rgba(10, 16, 28, 0.12) 88%, rgba(6, 10, 18, 0.55) 100%),
+    url("../images/decor/arabesco.png");
+  background-repeat: no-repeat, repeat-y;
+  background-position: center top, center top;
+  background-size: 100% 100%, 100% auto;
   background-attachment: scroll;
-  background-blend-mode: overlay;
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 1.125rem;
@@ -275,7 +286,10 @@ section {
   inset-block-start: 0;
   inset-inline: 0;
   z-index: 100;
-  background: linear-gradient(to bottom, rgba(15, 19, 28, 0.4) 0%, rgba(15, 19, 28, 0) 100%);
+  background: linear-gradient(to bottom, rgba(7, 11, 20, 0.86) 0%, rgba(7, 11, 20, 0.6) 75%, rgba(7, 11, 20, 0) 100%);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  border-bottom: 1px solid var(--border-gold);
 }
 
 .site-header__inner {
@@ -283,8 +297,8 @@ section {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-md);
-  padding-block: 0.85rem;
-  min-height: 68px;
+  padding-block: 0.7rem;
+  min-height: 60px;
 }
 
 .site-header__brand {
@@ -311,9 +325,10 @@ section {
 .site-header__monogram {
   font-family: var(--font-heading);
   font-size: 1.4rem;
-  color: var(--color-ivory);
+  color: var(--color-gold-bright);
   letter-spacing: 0.1em;
   white-space: nowrap;
+  text-shadow: 0 0 14px rgba(198, 161, 92, 0.35);
 }
 
 .site-nav {
@@ -326,20 +341,52 @@ section {
 }
 
 .site-nav__link {
+  position: relative;
   font-family: var(--font-heading);
   font-size: 0.85rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-text-soft);
-  padding-bottom: 0.35em;
-  border-bottom: 1px solid transparent;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
+  color: var(--text-warm);
+  padding-bottom: 0.5em;
+  transition: color var(--transition-fast);
+}
+
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--color-gold);
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
+}
+
+.site-nav__link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--color-gold);
+  transform: translateX(-50%) rotate(45deg) scale(0);
+  transition: transform var(--transition-base);
 }
 
 .site-nav__link:hover,
 .site-nav__link[aria-current="page"] {
-  color: var(--color-gold);
-  border-bottom-color: var(--color-gold);
+  color: var(--color-gold-bright);
+}
+
+.site-nav__link:hover::after,
+.site-nav__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.site-nav__link[aria-current="page"]::before {
+  transform: translateX(-50%) rotate(45deg) scale(1);
 }
 
 .nav-toggle {
@@ -386,15 +433,15 @@ section {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-top: 18px;
+  justify-content: center;
+  padding-top: clamp(8px, 1.6vh, 22px);
   text-align: center;
 }
 
 .hero-arch__frame {
   position: relative;
-  width: clamp(300px, 31vw, 520px);
-  height: clamp(420px, 68svh, 680px);
+  width: clamp(340px, 40vw, 660px);
+  height: clamp(460px, 76svh, 780px);
   margin-inline: auto;
 }
 
@@ -450,50 +497,50 @@ section {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 22px rgba(232, 202, 160, 0.4));
 }
 
 .hero-arch__title-line {
-  font-size: clamp(2.1rem, 5.4vw, 3rem);
+  font-size: clamp(3.2rem, 9vw, 5.6rem);
 }
 
 .hero-arch__title-line--groom {
-  font-size: clamp(2.6rem, 6.6vw, 3.7rem);
-  margin-top: -0.08em;
+  font-size: clamp(3.9rem, 11vw, 7rem);
+  margin-top: -0.1em;
 }
 
 .hero-arch__amp {
-  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
-  margin-block: 0.02em;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  margin-block: 0.03em;
 }
 
 .hero-arch__meta {
-  margin-top: 0.7em;
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .hero-arch__meta-divider {
-  width: 32px;
+  width: 46px;
   height: 1px;
   background-color: var(--color-gold);
-  margin-bottom: 0.6em;
+  margin-bottom: 0.8em;
 }
 
 .hero-arch__date {
   font-family: var(--font-heading);
-  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
-  letter-spacing: 0.16em;
+  font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-ivory);
+  color: var(--text-warm);
 }
 
 .hero-arch__place {
-  margin-top: 0.3em;
+  margin-top: 0.4em;
   font-family: var(--font-heading);
-  font-size: clamp(0.55rem, 0.9vw, 0.65rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(0.62rem, 1vw, 0.75rem);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-soft);
 }
@@ -502,7 +549,8 @@ section {
 .hero-arch__footer {
   flex-shrink: 0;
   position: relative;
-  border-top: 1px solid rgba(212, 175, 55, 0.45);
+  border-top: 1px solid rgba(198, 161, 92, 0.4);
+  background: linear-gradient(180deg, rgba(7, 11, 20, 0.35) 0%, rgba(7, 11, 20, 0.6) 100%);
   padding-block: 1rem;
 }
 
@@ -514,9 +562,21 @@ section {
 }
 
 .hero-arch__quote {
+  position: relative;
   font-family: var(--font-serif-clean);
   font-style: italic;
-  color: var(--color-offwhite);
+  color: var(--color-gold-bright);
+  padding-top: 0.85em;
+}
+
+.hero-arch__quote::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-gold);
 }
 
 .hero-arch__quote p {
@@ -527,9 +587,9 @@ section {
 .hero-arch__quote cite {
   display: block;
   margin-top: 0.4em;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-style: normal;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-soft);
 }
@@ -547,12 +607,18 @@ section {
   width: 3.4rem;
   height: 3.4rem;
   margin-top: -3.1rem;
+  padding: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--navy-surface);
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
   object-fit: contain;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .hero-arch__scroll:hover .hero-arch__scroll-icon {
   transform: scale(1.08);
+  box-shadow: 0 4px 18px rgba(198, 161, 92, 0.35);
 }
 
 .hero-arch__scroll-text {
@@ -564,17 +630,30 @@ section {
 }
 
 .hero-arch__countdown {
+  position: relative;
   justify-self: end;
   text-align: right;
+  padding-top: 0.85em;
+}
+
+.hero-arch__countdown::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-gold);
 }
 
 .hero-arch__countdown-lede {
   font-family: var(--font-heading);
+  font-style: italic;
   font-size: 0.9rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-text-soft);
-  margin-bottom: 0.3em;
+  margin-bottom: 0.35em;
 }
 
 .hero-arch__countdown-clock {
@@ -595,8 +674,8 @@ section {
   font-family: var(--font-heading);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  font-size: clamp(1.4rem, 3.2vw, 1.8rem);
-  color: var(--color-gold);
+  font-size: clamp(1.6rem, 3.6vw, 2.1rem);
+  color: var(--color-gold-bright);
   line-height: 1;
 }
 
