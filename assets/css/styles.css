@@ -755,7 +755,8 @@ section {
   padding: 0.85em 2.2em;
   border: 1px solid var(--color-gold);
   color: var(--color-gold);
-  font-family: var(--font-script);
+  font-family: var(--font-heading);
+  font-style: italic;
   font-size: 1.15rem;
   letter-spacing: 0.03em;
   transition: background-color var(--transition-fast), color var(--transition-fast);
@@ -1155,6 +1156,14 @@ section {
 }
 
 /* ---------- Album colaborativo ---------- */
+#album .section-eyebrow {
+  display: inline-block;
+  padding: 0.4em 0.9em;
+  background-color: rgb(27 42 74 / 85%);
+  border: 1px solid rgb(212 175 55 / 25%);
+  border-radius: 6px;
+}
+
 .album__actions {
   text-align: center;
   margin-top: var(--space-lg);
