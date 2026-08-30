@@ -20,7 +20,11 @@
 <body>
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="index.html" class="site-header__monogram">J &amp; C</a>
+      <a href="index.html" class="site-header__brand">
+        <img src="assets/images/decorative/arabesco_esquerda.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+        <span class="site-header__monogram">J &amp; C</span>
+        <img src="assets/images/decorative/arabesco_direita.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+      </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
         <span class="nav-toggle__bar"></span>
         <span class="visually-hidden">Abrir menu</span>
@@ -33,39 +37,48 @@
           <li><a class="site-nav__link" href="presentes.html">Presentes</a></li>
         </ul>
       </nav>
+      <img src="assets/images/decorative/arabesco_completo.png" alt="" class="site-header__side-ornament" aria-hidden="true" width="24" height="24" />
     </div>
   </header>
 
   <main>
     <!-- Cerimonia -->
-    <section id="cerimonia" class="page-section--first">
-      <div class="container">
-        <span class="section-eyebrow">Nos encontraremos em</span>
-        <h1 class="page-title">Cerimônia</h1>
-        <hr class="divider" />
-        <dl class="ceremony">
-          <div class="ceremony__item">
-            <dt class="ceremony__label">Data</dt>
-            <dd class="ceremony__value">28 de novembro de 2026</dd>
+    <section id="cerimonia" class="ceremony-hero">
+      <div class="container ceremony-hero__grid">
+        <div class="ceremony-hero__info">
+          <h1 class="page-title">Cerimônia</h1>
+          <span class="section-eyebrow">Nos encontraremos em</span>
+          <hr class="divider" />
+          <dl class="ceremony">
+            <div class="ceremony__item">
+              <dt class="ceremony__label">Data</dt>
+              <dd class="ceremony__value">28 de novembro de 2026</dd>
+            </div>
+            <div class="ceremony__item">
+              <dt class="ceremony__label">Horário</dt>
+              <dd class="ceremony__value">11h</dd>
+            </div>
+            <div class="ceremony__item">
+              <dt class="ceremony__label">Local</dt>
+              <dd class="ceremony__value">Igreja Matriz de Baependi</dd>
+            </div>
+            <div class="ceremony__item">
+              <dt class="ceremony__label">Cidade</dt>
+              <dd class="ceremony__value">Baependi, MG</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="ceremony-hero__visual">
+          <div class="ceremony-hero__church-frame">
+            <img src="assets/images/church/igreja.png" alt="Interior da Igreja Matriz de Baependi" loading="eager" width="640" height="820" />
           </div>
-          <div class="ceremony__item">
-            <dt class="ceremony__label">Horário</dt>
-            <dd class="ceremony__value">11h</dd>
-          </div>
-          <div class="ceremony__item">
-            <dt class="ceremony__label">Local</dt>
-            <dd class="ceremony__value">Igreja Matriz de Baependi</dd>
-          </div>
-          <div class="ceremony__item">
-            <dt class="ceremony__label">Cidade</dt>
-            <dd class="ceremony__value">Baependi, MG</dd>
-          </div>
-        </dl>
+          <p class="ceremony-hero__church-caption">Um local histórico e cheio de significado<br />para nossa união.</p>
+        </div>
       </div>
     </section>
 
     <!-- Localizacao -->
-    <section class="section--alt" id="localizacao">
+    <section class="section--alt location-section" id="localizacao">
       <div class="container">
         <span class="section-eyebrow">Como chegar</span>
         <h2>Localização</h2>
@@ -85,7 +98,7 @@
     </section>
 
     <!-- Trilha sonora (mini) -->
-    <section class="playlist-mini" id="playlist-mini">
+    <section class="playlist-mini location-section__playlist" id="playlist-mini">
       <div class="container playlist-mini__inner">
         <span class="playlist-mini__label">Tocando agora</span>
         <div class="playlist-mini__frame">
