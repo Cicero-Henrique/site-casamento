@@ -714,6 +714,15 @@ section {
   color: var(--color-text-soft);
 }
 
+.gifts-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--content-padding);
+  background-color: rgb(27 42 74 / 85%);
+  border: 1px solid rgb(212 175 55 / 25%);
+  border-radius: 12px;
+}
+
 /* ---------- Cartao de destaque (historia / playlist) ---------- */
 .story-card {
   max-width: 720px;
@@ -1178,19 +1187,57 @@ section {
 }
 
 /* ---------- Presentes ---------- */
+.gifts-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+.gifts-filter__button {
+  padding: 0.5em 1.1em;
+  background-color: rgb(27 42 74 / 85%);
+  border: 1px solid rgb(212 175 55 / 35%);
+  border-radius: 999px;
+  color: var(--color-text-soft);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.gifts-filter__button:hover {
+  border-color: var(--color-champagne);
+  color: var(--color-champagne);
+}
+
+.gifts-filter__button[aria-pressed="true"] {
+  background-color: var(--color-champagne);
+  border-color: var(--color-champagne);
+  color: var(--color-navy);
+}
+
 .gifts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  align-items: stretch;
   gap: var(--space-md);
   margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  background-color: rgb(27 42 74 / 85%);
+  border: 1px solid rgb(212 175 55 / 25%);
+  border-radius: 12px;
 }
 
 .gift-card {
   background-color: var(--color-ivory);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgb(212 175 55 / 35%);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 .gift-card__image {
@@ -1213,6 +1260,13 @@ section {
   flex-grow: 1;
 }
 
+.gift-card__category {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-soft-blue);
+}
+
 .gift-card__name {
   font-family: var(--font-heading);
   font-size: 1.25rem;
@@ -1222,7 +1276,6 @@ section {
 .gift-card__description {
   font-size: 0.95rem;
   color: var(--color-text-soft);
-  flex-grow: 1;
 }
 
 .gift-card__price {
@@ -1232,9 +1285,10 @@ section {
 }
 
 .gift-card__button {
-  margin-top: var(--space-xs);
+  margin-top: auto;
   width: 100%;
   text-align: center;
+  border-radius: 999px;
 }
 
 /* ---------- Modal QR Code ---------- */
