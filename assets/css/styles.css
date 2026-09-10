@@ -1573,6 +1573,10 @@ section {
   .hero-arch__countdown-clock {
     justify-content: center;
   }
+
+  .hero-arch__scroll-icon {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 480px) {
