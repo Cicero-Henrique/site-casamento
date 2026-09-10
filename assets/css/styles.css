@@ -1468,7 +1468,7 @@ section {
     inset-inline: 0;
     background-color: var(--color-navy);
     border-bottom: 1px solid var(--color-border);
-    transform: translateY(-110%);
+    transform: translateY(calc(-100% - 60px));
     transition: transform var(--transition-base);
     justify-self: stretch;
   }
