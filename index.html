@@ -20,7 +20,11 @@
 <body>
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="index.html" class="site-header__monogram">J &amp; C</a>
+      <a href="index.html" class="site-header__brand">
+        <img src="assets/images/decorative/arabesco_esquerda.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+        <span class="site-header__monogram">J &amp; C</span>
+        <img src="assets/images/decorative/arabesco_direita.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+      </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
         <span class="nav-toggle__bar"></span>
         <span class="visually-hidden">Abrir menu</span>
@@ -28,24 +32,83 @@
       <nav class="site-nav" id="siteNav">
         <ul class="site-nav__list">
           <li><a class="site-nav__link" href="index.html" aria-current="page">Início</a></li>
+          <li><a class="site-nav__link" href="#apresentacao">Nossa História</a></li>
+          <li><a class="site-nav__link" href="#fotos">Galeria</a></li>
           <li><a class="site-nav__link" href="cerimonia.html">Cerimônia</a></li>
           <li><a class="site-nav__link" href="curiosidades.html">Curiosidades</a></li>
           <li><a class="site-nav__link" href="presentes.html">Presentes</a></li>
         </ul>
       </nav>
+      <img src="assets/images/decorative/arabesco_completo.png" alt="" class="site-header__side-ornament" aria-hidden="true" width="24" height="24" />
     </div>
   </header>
 
   <main>
     <!-- Hero -->
-    <section class="hero">
-      <img class="hero__image" src="assets/images/couple/hero.jpg" alt="Júlia e Cícero" loading="eager" width="1920" height="1080" />
-      <div class="hero__overlay" aria-hidden="true"></div>
-      <div class="container hero__content">
-        <span class="hero__eyebrow">Nós vamos nos casar</span>
-        <h1 class="hero__title">Júlia &amp; Cícero</h1>
-        <p class="hero__date">28 de novembro de 2026 &middot; 11h</p>
-        <a href="cerimonia.html" class="hero__cta">Ver detalhes</a>
+    <section class="hero-arch" id="inicio">
+      <div class="container hero-arch__container">
+        <div class="hero-arch__frame">
+          <div class="hero-arch__photo">
+            <img src="assets/images/couple/hero.png" alt="Júlia e Cícero" loading="eager" width="1200" height="1500" />
+            <div class="hero-arch__overlay">
+              <div class="hero-arch__names">
+                <span class="hero-arch__title-line">Júlia</span>
+                <span class="hero-arch__amp">&amp;</span>
+                <span class="hero-arch__title-line hero-arch__title-line--groom">Cícero</span>
+              </div>
+              <div class="hero-arch__meta">
+                <span class="hero-arch__meta-divider" aria-hidden="true"></span>
+                <p class="hero-arch__date">28 de novembro de 2026</p>
+                <p class="hero-arch__place">Baependi, MG</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-arch__footer">
+        <div class="container hero-arch__footer-inner">
+          <blockquote class="hero-arch__quote">
+            <p>&ldquo;A alma que pode falar com os olhos, também pode beijar com o olhar.&rdquo;</p>
+            <cite>&mdash; Gustavo Adolfo Bécquer</cite>
+          </blockquote>
+
+          <a href="#playlist-mini" class="hero-arch__scroll">
+            <img src="assets/images/decorative/botao.png" alt="" class="hero-arch__scroll-icon" aria-hidden="true" width="42" height="42" />
+            <span class="hero-arch__scroll-text">Role para explorar</span>
+          </a>
+
+          <div
+            class="hero-arch__countdown"
+            id="countdownRoot"
+            data-wedding-date="2026-11-28T11:00:00-03:00"
+            data-after-text="Aconteceu. E foi melhor do que a gente imaginava."
+          >
+            <p class="hero-arch__countdown-lede" id="countdownLede">Faltam</p>
+            <div class="hero-arch__countdown-clock" id="countdownClock">
+              <div class="hero-arch__countdown-unit">
+                <span class="hero-arch__countdown-value" data-unit="days">00</span>
+                <span class="hero-arch__countdown-label">dias</span>
+              </div>
+              <span class="hero-arch__countdown-sep" aria-hidden="true">:</span>
+              <div class="hero-arch__countdown-unit">
+                <span class="hero-arch__countdown-value" data-unit="hours">00</span>
+                <span class="hero-arch__countdown-label">horas</span>
+              </div>
+              <span class="hero-arch__countdown-sep" aria-hidden="true">:</span>
+              <div class="hero-arch__countdown-unit">
+                <span class="hero-arch__countdown-value" data-unit="minutes">00</span>
+                <span class="hero-arch__countdown-label">min</span>
+              </div>
+              <span class="hero-arch__countdown-sep" aria-hidden="true">:</span>
+              <div class="hero-arch__countdown-unit">
+                <span class="hero-arch__countdown-value" data-unit="seconds">00</span>
+                <span class="hero-arch__countdown-label">seg</span>
+              </div>
+            </div>
+            <p class="hero-arch__countdown-text" id="countdownAfterText" hidden></p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -65,40 +128,6 @@
             loading="lazy">
           </iframe>
         </div>
-      </div>
-    </section>
-
-    <!-- Contagem regressiva -->
-    <section class="countdown section--alt" id="contagem">
-      <div
-        class="container countdown__inner"
-        id="countdownRoot"
-        data-wedding-date="2026-11-28T11:00:00-03:00"
-        data-after-text="Aconteceu. E foi melhor do que a gente imaginava."
-      >
-        <p class="countdown__lede" id="countdownLede">Faltam</p>
-        <div class="countdown__clock" id="countdownClock">
-          <div class="countdown__unit">
-            <span class="countdown__value" data-unit="days">00</span>
-            <span class="countdown__label">dias</span>
-          </div>
-          <span class="countdown__sep" aria-hidden="true">&middot;</span>
-          <div class="countdown__unit">
-            <span class="countdown__value" data-unit="hours">00</span>
-            <span class="countdown__label">horas</span>
-          </div>
-          <span class="countdown__sep" aria-hidden="true">&middot;</span>
-          <div class="countdown__unit">
-            <span class="countdown__value" data-unit="minutes">00</span>
-            <span class="countdown__label">min</span>
-          </div>
-          <span class="countdown__sep" aria-hidden="true">&middot;</span>
-          <div class="countdown__unit">
-            <span class="countdown__value" data-unit="seconds">00</span>
-            <span class="countdown__label">seg</span>
-          </div>
-        </div>
-        <p class="countdown__text" id="countdownAfterText" hidden></p>
       </div>
     </section>
 

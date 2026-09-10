@@ -20,7 +20,11 @@
 <body>
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="index.html" class="site-header__monogram">J &amp; C</a>
+      <a href="index.html" class="site-header__brand">
+        <img src="assets/images/decorative/arabesco_esquerda.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+        <span class="site-header__monogram">J &amp; C</span>
+        <img src="assets/images/decorative/arabesco_direita.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+      </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
         <span class="nav-toggle__bar"></span>
         <span class="visually-hidden">Abrir menu</span>
@@ -33,6 +37,7 @@
           <li><a class="site-nav__link" href="presentes.html">Presentes</a></li>
         </ul>
       </nav>
+      <img src="assets/images/decorative/arabesco_completo.png" alt="" class="site-header__side-ornament" aria-hidden="true" width="24" height="24" />
     </div>
   </header>
 
@@ -96,11 +101,16 @@
         <span class="section-eyebrow">Registre com a gente</span>
         <h2>Você está oficialmente convidado a aparecer nas nossas fotos</h2>
         <hr class="divider" />
-        <p class="section-lede">Crie um álbum colaborativo e envie os cliques que você fizer durante a celebração. Queremos ver a festa pelos seus olhos também.</p>
-        <p class="album__actions">
-          <a class="button" href="#" target="_blank" rel="noopener noreferrer">Enviar fotos</a>
-        </p>
-        <p class="album__note">[Link do álbum colaborativo a definir]</p>
+        <p class="section-lede">Criamos um álbum colaborativo no WedShoots e queremos ver a festa pelos seus olhos também. Envie as fotos e vídeos que você fizer durante a celebração clicando no botão abaixo ou escaneando o QR Code.</p>
+        <div class="album__content">
+          <p class="album__actions">
+            <a class="button" href="https://www.casamentos.com.br/web/w12895066/wedshoots-8" target="_blank" rel="noopener noreferrer">Enviar fotos</a>
+          </p>
+          <div class="album__qr">
+            <img src="assets/images/album/qr_code_album.jpg" alt="QR Code do álbum colaborativo" width="300" height="400" loading="lazy" />
+            <p class="album__note">Aponte a câmera do seu celular para o QR Code</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>

@@ -53,11 +53,12 @@ Arquivos principais atuais:
 
 Observações importantes:
 
-- `assets/images/decor/arabesco.png` é o ornamento usado no fundo atual.
-- `assets/images/decorative/` e `assets/images/textures/` existem, mas estão vazios no momento desta atualização.
+- `assets/images/decor/arabesco.png` é o ornamento usado no fundo atual (padrão floral navy + dourado).
+- `assets/images/decorative/` contém `arabesco_esquerda.png`, `arabesco_direita.png`, `arabesco_completo.png` (ornamentos do header) e `botao.png` (ícone do "Role para explorar"); `assets/images/textures/` continua vazio.
 - `assets/images/couple/og-cover.jpg` é referenciado nos metadados Open Graph, mas o arquivo ainda não existe.
 - Algumas imagens em `assets/images/couple/` e `assets/images/gifts/` ainda são grandes demais para uso final sem otimização.
-- Na análise feita para esta atualização, havia alterações locais não comitadas em `assets/css/styles.css` e `assets/images/decor/arabesco.png`; não reverta nada sem pedido explícito.
+- Em 2026-08-29/30, `assets/css/styles.css` passou por uma revisão visual completa do header e do hero (`index.html`) usando `imagem-referencia.png` como referência de estilo — ver seção 5 (paleta) e `PLAN-Novo.md` (status de implementação) para detalhes. Há alterações locais ainda não comitadas dessa revisão; não reverta sem pedido explícito.
+- A fonte "Aphrodite Slim" (`--font-script`) continua sem arquivo em `assets/fonts/`; o site usa o fallback "Tangerine", que é mais fino que o script da referência.
 
 ## 3. Dados Oficiais
 
@@ -79,18 +80,20 @@ A referência visual é `paleta.jpeg`: convite claro, papel texturizado, serifas
 
 O visual implementado atualmente usa:
 
-- fundo principal azul marinho profundo;
-- texto claro em marfim/champagne;
+- fundo principal azul marinho profundo (`--navy-deep`), sem cair para preto/cinza: a imagem `arabesco.png` recebe apenas um tint em `linear-gradient` (não mais `background-blend-mode: overlay`, que esmagava o floral);
+- texto claro em marfim/champagne, com `--text-warm` para elementos que precisam de mais contraste quente (header, data);
 - seções alternadas em azul índigo translúcido;
 - arabesco decorativo aplicado ao `body`;
 - tipografia Cormorant Garamond para títulos e corpo;
-- monograma `J & C`.
+- monograma `J & C` em dourado, com header fixo em faixa navy translúcida (`backdrop-filter: blur`) e borda dourada fina;
+- navegação com sublinhado dourado animado e um pequeno losango ornamental centralizado sob o item ativo;
+- hero com nomes ("Júlia & Cícero") como elemento tipográfico dominante, moldura em arco ampliada, botão "Role para explorar" com círculo navy + borda dourada, e citação/cronômetro com linhas ornamentais finas acima.
 
 Evitar:
 
 - fantasia medieval pesada;
 - estética de RPG, castelo, armadura ou pergaminho artificial;
-- dourado brilhante;
+- dourado brilhante/amarelo saturado — usar dourado envelhecido (`--color-gold`, `--color-gold-muted`, `--color-gold-bright`);
 - neon;
 - glassmorphism;
 - sombras fortes de dashboard;
@@ -114,8 +117,24 @@ Variáveis atuais em `assets/css/styles.css`:
   --color-champagne: #dbc3a5;
   --color-neutral: #e8ddcb;
   --color-ivory: #f4f2ee;
+
+  --color-card-navy: #1b2a4a;
+  --color-gold: #c6a15c;
+  --color-gold-muted: #a98a5a;
+  --color-gold-bright: #e8caa0;
+  --color-offwhite: #fdfbf7;
+
+  /* Sistema navy/dourado da revisao visual (header, hero, background) */
+  --navy-deep: #080d17;
+  --navy-surface: #101a2c;
+  --navy-overlay-strong: rgba(7, 11, 20, 0.82);
+  --navy-overlay-soft: rgba(7, 11, 20, 0.4);
+  --text-warm: #f0e6d2;
+  --border-gold: rgba(198, 161, 92, 0.35);
 }
 ```
+
+Ao criar componentes novos que precisem de navy/dourado, reaproveite essas variáveis em vez de declarar hex soltos — inclusive `--navy-deep`/`--navy-surface` para superfícies escuras e `--color-gold`/`--color-gold-muted`/`--color-gold-bright` para variações de destaque dourado.
 
 Ordem sugerida do CSS:
 

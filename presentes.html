@@ -20,7 +20,11 @@
 <body>
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="index.html" class="site-header__monogram">J &amp; C</a>
+      <a href="index.html" class="site-header__brand">
+        <img src="assets/images/decorative/arabesco_esquerda.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+        <span class="site-header__monogram">J &amp; C</span>
+        <img src="assets/images/decorative/arabesco_direita.png" alt="" class="site-header__ornament" aria-hidden="true" width="24" height="24" />
+      </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
         <span class="nav-toggle__bar"></span>
         <span class="visually-hidden">Abrir menu</span>
@@ -33,16 +37,21 @@
           <li><a class="site-nav__link" href="presentes.html" aria-current="page">Presentes</a></li>
         </ul>
       </nav>
+      <img src="assets/images/decorative/arabesco_completo.png" alt="" class="site-header__side-ornament" aria-hidden="true" width="24" height="24" />
     </div>
   </header>
 
   <main>
     <section class="page-section--first">
       <div class="container">
-        <span class="section-eyebrow">Com carinho</span>
-        <h1 class="page-title">Lista de Presentes</h1>
-        <hr class="divider" />
-        <p class="section-lede">O melhor presente é o abraço de quem amamos neste dia único. Se desejar nos abençoar com algo a mais para o nosso caminho que se inicia, adoraremos receber seu carinho através das nossas sugestões</p>
+        <div class="gifts-intro">
+          <span class="section-eyebrow">Com carinho</span>
+          <h1 class="page-title">Lista de Presentes</h1>
+          <hr class="divider" />
+          <p class="section-lede">O melhor presente é o abraço de quem amamos neste dia único. Se desejar nos abençoar com algo a mais para o nosso caminho que se inicia, adoraremos receber seu carinho através das nossas sugestões</p>
+        </div>
+
+        <div class="gifts-filters" id="giftsFilters"></div>
 
         <div class="gifts-grid" id="giftsGrid" data-reveal></div>
       </div>
