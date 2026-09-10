@@ -1173,9 +1173,26 @@ section {
   border-radius: 6px;
 }
 
+.album__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
 .album__actions {
   text-align: center;
-  margin-top: var(--space-lg);
+  margin: 0;
+}
+
+.album__qr {
+  text-align: center;
+}
+
+.album__qr img {
+  border-radius: 8px;
+  border: 1px solid rgb(212 175 55 / 25%);
 }
 
 .album__note {
