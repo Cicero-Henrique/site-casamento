@@ -104,7 +104,7 @@ const gifts = [
   },
   {
     id: "gift-004",
-    name: "Café",
+    name: "Uma saca de café",
     description: "Primeira fonte de energia",
     category: "Pedidos especiais",
     image: "assets/images/gifts/cafe.jpg",
