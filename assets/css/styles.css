@@ -1590,3 +1590,37 @@ section {
     height: 36px;
   }
 }
+
+/* Em telas de celular o overlay do hero precisa ser mais compacto para caber
+   inteiro sobre a camisa preta, sem invadir o rosto do casal na foto. */
+@media (max-width: 540px) {
+  .hero-arch__overlay {
+    bottom: 4%;
+  }
+
+  .hero-arch__names {
+    line-height: 0.78;
+  }
+
+  .hero-arch__title-line {
+    font-size: clamp(2rem, 9vw, 5.6rem);
+  }
+
+  .hero-arch__title-line--groom {
+    font-size: clamp(2.4rem, 11vw, 7rem);
+    margin-top: -0.05em;
+  }
+
+  .hero-arch__amp {
+    font-size: clamp(1.2rem, 5vw, 3.1rem);
+    margin-block: 0.02em;
+  }
+
+  .hero-arch__meta {
+    margin-top: 0.45em;
+  }
+
+  .hero-arch__meta-divider {
+    margin-bottom: 0.45em;
+  }
+}
