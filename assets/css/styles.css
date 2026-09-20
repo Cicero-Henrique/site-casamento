@@ -1551,7 +1551,12 @@ section {
   }
 
   .hero-arch__frame {
-    height: clamp(380px, 62svh, 560px);
+    /* 340px eh a largura fixa do arco neste breakpoint (min do clamp de
+       largura); 510px = 340 * 1.5, a proporcao real da foto (1024x1536).
+       Isso evita a foto "sobrar" (object-fit: contain) deixando uma faixa
+       vazia embaixo, o que empurrava a data para fora da imagem em telas
+       mais altas (iPhone 16 Pro Max, Pixel 9 Pro Fold). */
+    height: clamp(380px, 62svh, 510px);
   }
 
   .hero-arch__footer-inner {
@@ -1592,8 +1597,12 @@ section {
 }
 
 /* Em telas de celular o overlay do hero precisa ser mais compacto para caber
-   inteiro sobre a camisa preta, sem invadir o rosto do casal na foto. */
-@media (max-width: 540px) {
+   inteiro sobre a camisa preta, sem invadir o rosto do casal na foto.
+   O limite acompanha o breakpoint que reduz a altura do arco (768px);
+   abaixo disso o quadro fica mais baixo e o overlay precisa do mesmo ajuste,
+   senao a data extrapola a moldura em telas maiores como iPhone 16 Pro Max
+   e Pixel 9 Pro Fold. */
+@media (max-width: 768px) {
   .hero-arch__overlay {
     bottom: 4%;
   }
@@ -1603,16 +1612,16 @@ section {
   }
 
   .hero-arch__title-line {
-    font-size: clamp(2rem, 9vw, 5.6rem);
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
   .hero-arch__title-line--groom {
-    font-size: clamp(2.4rem, 11vw, 7rem);
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
     margin-top: -0.05em;
   }
 
   .hero-arch__amp {
-    font-size: clamp(1.2rem, 5vw, 3.1rem);
+    font-size: clamp(1.2rem, 5vw, 1.7rem);
     margin-block: 0.02em;
   }
 
