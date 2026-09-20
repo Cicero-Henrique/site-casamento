@@ -188,42 +188,42 @@ function setupCountdown() {
 
 const QUIZ_QUESTIONS = [
   {
-    text: "Quem demora mais para se arrumar?",
+    text: "Na hora de escolher um filme ou série, o que normalmente acontece?",
     options: [
-      { label: "Ele, sem dúvida", persona: "b" },
-      { label: "Ela, com certeza", persona: "a" },
-      { label: "Os dois, sempre atrasados juntos", persona: "c" },
+      { label: "Júlia escolhe", persona: "a" },
+      { label: "Cícero escolhe", persona: "b" },
+      { label: "Passam mais tempo escolhendo do que assistindo", persona: "c" },
     ],
   },
   {
-    text: "Quem escolhe o restaurante?",
+    text: "Em uma viagem, quem provavelmente assume o papel de guia?",
     options: [
-      { label: "Ela decide na hora", persona: "a" },
-      { label: "Ele já tem um favorito na manga", persona: "b" },
-      { label: "Depende de quem está com mais fome", persona: "c" },
+      { label: "Júlia", persona: "a" },
+      { label: "Cícero", persona: "b" },
+      { label: "Google Maps, porque nenhum dos dois merece essa responsabilidade", persona: "c" },
     ],
   },
   {
-    text: "Quem é mais provável de esquecer alguma coisa no casamento?",
+    text: "Se o casal tivesse que escolher agora um destino para viajar, o que pesaria mais?",
     options: [
-      { label: "Ela", persona: "a" },
-      { label: "Ele", persona: "b" },
-      { label: "Só vamos descobrir no dia", persona: "c" },
+      { label: "Visitar a maior quantidade de lugares", persona: "a" },
+      { label: "Um lugar bonito", persona: "b" },
+      { label: "Uma promoção imperdível de passagem", persona: "c" },
     ],
   },
   {
-    text: "Quem manda a primeira mensagem depois de uma bobagem?",
+    text: "Quem tem mais chance de começar a rir em uma situação em que definitivamente não deveria?",
     options: [
-      { label: "Ela, sempre", persona: "a" },
-      { label: "Ele, com um emoji de coração", persona: "b" },
-      { label: "Ninguém, o silêncio já resolve sozinho", persona: "c" },
+      { label: "Júlia", persona: "a" },
+      { label: "Cícero", persona: "b" },
+      { label: "Basta um olhar entre os dois", persona: "c" },
     ],
   },
   {
-    text: "Na pista de dança, quem puxa o casal pra dançar primeiro?",
+    text: "Se começasse a tocar a música favorita do casal agora, quem começaria a cantar primeiro?",
     options: [
-      { label: "Ela", persona: "a" },
-      { label: "Ele", persona: "b" },
+      { label: "Júlia", persona: "a" },
+      { label: "Cícero", persona: "b" },
       { label: "A música é quem decide", persona: "c" },
     ],
   },
@@ -232,15 +232,15 @@ const QUIZ_QUESTIONS = [
 const QUIZ_RESULTS = {
   a: {
     title: "Você é do time Júlia",
-    text: "Sensível, atenta aos detalhes e sempre pronta pra ajudar a organizar tudo.",
+    text: "Seu jeito de pensar combina com o dela: atenção aos detalhes, carinho e aquele toque especial em tudo.",
   },
   b: {
     title: "Você é do time Cícero",
-    text: "Descontraído, com uma piada na manga pra deixar qualquer clima mais leve.",
+    text: "Você entrou na mesma sintonia dele: leveza, bom humor e uma forma descontraída de aproveitar cada momento.",
   },
   c: {
     title: "Você é do time “Só o Amor Explica”",
-    text: "Você entende que nem tudo precisa fazer sentido — só precisa ser bonito.",
+    text: "No fim, você percebeu o mais importante: Júlia e Cícero funcionam melhor justamente porque cada um completa o outro.",
   },
 };
 
